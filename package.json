@@ -1,0 +1,26 @@
+{
+  "name": "luis-perez-portfolio-webpage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portafolio web oficial de Luis Pérez (Inox One) — Dirección de Arte, Identidad Visual y Arte Digital",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve .",
+    "build": "echo \"Sitio web estático listo para producción\""
+  },
+  "keywords": [
+    "portfolio",
+    "luis-perez",
+    "inox-one",
+    "art-direction",
+    "branding",
+    "design",
+    "celaya"
+  ],
+  "author": "Luis Pérez",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
