@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&amp;family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+@layer base {
+  html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+  body { overscroll-behavior: none; }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child { margin-bottom: 0 !important; }
+}
+
+::-webkit-scrollbar { display: none; }
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 45, 120, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 45, 120, 0.04) 1px, transparent 1px);
+}
+
+/* Animations & Keyframes */
+@keyframes floatHero {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) rotate(1.2deg) scale(1.02);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes marqueeLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes sheenEffect {
+  0% { transform: translateX(-100%) skewX(-25deg); }
+  100% { transform: translateX(250%) skewX(-25deg); }
+}
+
+.animate-float-hero {
+  animation: floatHero 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 4.5s ease-in-out infinite;
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 38s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 42s linear infinite;
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 28s linear infinite;
+}
+
+.ticker-pause:hover .animate-ticker {
+  animation-play-state: paused;
+}
+
+/* Nav Link Hover Underline Sweep */
+.nav-link-sweep {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 2px;
+}
+.nav-link-sweep::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff2d78;
+  transform: translateX(-102%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link-sweep:hover::after {
+  transform: translateX(0);
+}
+
+/* CTA Sheen Shine Overlay */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.45), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.btn-sheen:hover::after {
+  opacity: 1;
+  animation: sheenEffect 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card 3D tilt & backlight */
+.service-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Scroll reveal classes */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modal animation */
+#contact-modal {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#contact-modal.modal-closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#contact-modal.modal-closed > div {
+  transform: scale(0.94) translateY(12px);
+}
+#contact-modal.modal-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+#contact-modal.modal-open > div {
+  transform: scale(1) translateY(0);
+}
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "outline-variant": "#302840",
+        "inverse-primary": "#8c0038",
+        "secondary-fixed": "#c0fff4",
+        "error-container": "#3d0f0f",
+        "on-primary-fixed-variant": "#8c0038",
+        "outline": "#5a5068",
+        "on-tertiary-fixed-variant": "#665200",
+        "on-background": "#e8e0f0",
+        "primary": "#ff2d78",
+        "tertiary": "#ffe04a",
+        "surface-container-lowest": "#0a0a12",
+        "inverse-surface": "#e8e0f0",
+        "secondary-container": "#004d3d",
+        "on-surface": "#e8e0f0",
+        "on-primary-container": "#ffe0ec",
+        "on-secondary-fixed-variant": "#004d4d",
+        "surface": "#0f0f1a",
+        "tertiary-fixed-dim": "#ffe04a",
+        "on-secondary-fixed": "#001a1a",
+        "surface-container-low": "#111118",
+        "primary-fixed": "#ffe0ec",
+        "surface-tint": "#ff2d78",
+        "primary-fixed-dim": "#ff80aa",
+        "primary-container": "#b3004e",
+        "on-secondary": "#001a1a",
+        "surface-container-high": "#1e1e30",
+        "on-primary-fixed": "#3d0020",
+        "surface-dim": "#0f0f1a",
+        "on-error": "#1a0000",
+        "on-error-container": "#ffa0a0",
+        "secondary-fixed-dim": "#00e6b8",
+        "on-tertiary-fixed": "#1a1000",
+        "on-primary": "#1a0010",
+        "surface-variant": "#1e1e30",
+        "background": "#0a0a12",
+        "on-tertiary-container": "#fff0c0",
+        "on-secondary-container": "#c0fff4",
+        "surface-container-highest": "#28283e",
+        "on-surface-variant": "#a098b0",
+        "secondary": "#00ffcc",
+        "tertiary-container": "#665200",
+        "surface-bright": "#1a1a2e",
+        "surface-container": "#141422",
+        "on-tertiary": "#1a1000",
+        "error": "#ff4444",
+        "tertiary-fixed": "#fff0c0",
+        "inverse-on-surface": "#0a0a12"
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      },
+      fontFamily: {
+        headline: ["Quicksand", "sans-serif"],
+        display: ["Quicksand", "sans-serif"],
+        body: ["Lexend", "sans-serif"],
+        label: ["Quicksand", "sans-serif"]
+      }
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-background font-body text-on-surface antialiased bg-grid-pattern relative min-h-screen flex flex-col selection:bg-primary selection:text-on-primary">
+<!-- HEADER / NAV -->
+<header class="fixed top-5 left-0 right-0 z-50 flex justify-center px-4">
+<div class="w-full max-w-6xl bg-surface-container-highest/90 backdrop-blur-xl rounded-full px-4 sm:px-6 py-2.5 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.6)] border border-outline-variant/40 transition-all duration-300">
+<div class="flex items-center gap-3.5">
+<a class="flex items-center gap-3 group" data-path="portfolio" href="#">
+<img alt="5logo-20lp_4-p-3200.png" class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ_I39IjD0Sl4lQIwCz0XMNUXAZ7DGKBZGwwCFseVlxWuVHTvrJoxcD8fCnOWKznCiCosTYoSuNYgevEuoMW4MFR3u0sSJQaSQgbpfMjGgaQqwuJf_bUx9lUsWM3_vBA4KKTzhOPPCUKG2GdIY4jQbpizRSmkhlMMghetzXuRN81aYVpZoYhZeRB3CeCI4KbTF93bjpgry5kebTdKyXCzG-QNN_vXWIhzezf2MLmzOjxrpWWg5DpViVLCLO0nK0Cb6fQ"/>
+<div class="flex flex-col">
+<span class="font-headline font-bold text-sm tracking-wider uppercase text-on-surface group-hover:text-primary transition-colors">Luis Pérez</span>
+<span class="font-label text-[10px] tracking-widest uppercase text-secondary font-semibold">Inox One</span>
+</div>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-7 font-label tracking-widest text-[11px] font-semibold" data-active-classes="text-primary font-bold drop-shadow-[0_0_8px_rgba(255,45,120,0.6)]">
+<a class="nav-link-sweep text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="servicios" href="#servicios">SERVICIOS</a>
+<a class="nav-link-sweep text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="trabajos" href="#trabajos">TRABAJOS</a>
+<a class="nav-link-sweep text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="precios" href="#precios">PRECIOS</a>
+<a class="nav-link-sweep text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase" data-path="faq" href="#faq">FAQ</a>
+</nav>
+<div class="flex items-center gap-3">
+<button aria-label="Toggle dark mode" class="w-9 h-9 rounded-full bg-surface-container-high hover:bg-surface-bright flex items-center justify-center text-tertiary transition-all duration-200 border border-outline-variant/30 hover:shadow-[0_0_12px_rgba(255,224,74,0.3)] hover:rotate-12 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[19px]">dark_mode</span>
+</button>
+<button class="btn-sheen px-5 py-2 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-[0_0_16px_rgba(255,45,120,0.45)] hover:shadow-[0_0_24px_rgba(255,45,120,0.7)] hover:scale-[1.04] active:scale-[0.98]" onclick="openModal()" type="button">
+        CONTACTO
+      </button>
+<div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full pt-24 bg-transparent flex-1">
+<div class="flex flex-col w-full text-on-surface select-none transition-colors duration-500 overflow-x-hidden" id="inox-page-root">
+<!-- HERO SECTION WITH INFINITE MARQUEES & FLOATING 3D CHARACTER -->
+<section class="relative w-full overflow-hidden pt-8 pb-16 flex flex-col items-center justify-center">
+<!-- Huge continuous smooth infinite scrolling marquee backdrops (Watermark effect) -->
+<div class="absolute inset-0 pointer-events-none select-none flex flex-col justify-center opacity-30 overflow-hidden z-0 space-y-4">
+<!-- Top Banner: Left-to-Right / Alternating Flow -->
+<div class="overflow-hidden w-full whitespace-nowrap">
+<div class="animate-marquee-left text-[11vw] font-headline font-black uppercase tracking-tighter text-outline-variant/30 leading-none">
+<span class="px-6">DIRECTOR DE ARTE • IDENTIDAD VISUAL • ILUSTRADOR • FOTÓGRAFO • FILMMAKER • PORTAFOLIO •</span>
+<span class="px-6">DIRECTOR DE ARTE • IDENTIDAD VISUAL • ILUSTRADOR • FOTÓGRAFO • FILMMAKER • PORTAFOLIO •</span>
+</div>
+</div>
+<!-- Bottom Banner: Alternate Right-to-Left Flow -->
+<div class="overflow-hidden w-full whitespace-nowrap mt-[-2vw]">
+<div class="animate-marquee-right text-[8.5vw] font-label font-bold uppercase tracking-widest text-surface-container-highest/40 leading-none">
+<span class="px-8">ALURO® • INOX ONE • STUDIO LP • ALURO® • INOX ONE • STUDIO LP • ALURO® •</span>
+<span class="px-8">ALURO® • INOX ONE • STUDIO LP • ALURO® • INOX ONE • STUDIO LP • ALURO® •</span>
+</div>
+</div>
+</div>
+<!-- Centered Visual Art Hero (Eye Mascot + Headings) -->
+<div class="relative z-10 max-w-5xl mx-auto px-4 flex flex-col items-center text-center">
+<!-- Sub-badge status with ping dot -->
+<div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface-container-high/80 border border-outline-variant/40 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:border-secondary/60 transition-all cursor-default">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Inox One • Creative Studio 2026</span>
+</div>
+<!-- Mascot 3D Composition with Floating Animation and Pulsing Glow -->
+<div class="relative group my-2 cursor-pointer transition-all duration-700">
+<!-- Ambient pulsing neon-lime and violet backlight glow -->
+<div class="absolute -inset-14 bg-gradient-to-tr from-primary/30 via-secondary/25 to-secondary/35 rounded-full blur-3xl pointer-events-none -z-10 animate-glow-pulse"></div>
+<!-- Floating/hovering 3D Mascot Image -->
+<div class="animate-float-hero">
+<img alt="Mascota surrealista de Luis Pérez Inox One: figura con traje y cabeza de globo ocular sentada en isla flotante roja" class="w-72 sm:w-96 md:w-[430px] h-auto object-contain drop-shadow-[0_24px_50px_rgba(0,0,0,0.85)] filter transition-all duration-500 group-hover:scale-[1.03]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZoxh7lwDZX76HEDukjRNQ2NRFAPCarG1e3MAVuUSe-Ru3qwtt1Gqn-C8zY42cLn8iwQT-5SskUYQyK30iwr5wFLYR9om-lpM3lohr5C4UjkE13-70JLQySSJStGpa32ZyoQXdhayyxxT611O9B2Ks7ZapvGxqPGBvd5yI1nf25Rk70JgYfaCHDBIC7LXWbW1sFnAQVgeVmGneLHe8mZejXSBrLwkeJ-cdBHWQVDSXUd7CD5BIxrNKa7X8Z_ajD5iEsg"/>
+</div>
+<!-- Secondary floating LP vector brush logo watermark -->
+<div class="mt-[-28px] sm:mt-[-42px] flex justify-center items-center pointer-events-none">
+<img alt="LP Signature Vector" class="w-14 h-14 sm:w-16 sm:h-16 object-contain opacity-75 drop-shadow-[0_0_12px_rgba(140,0,56,0.6)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZx4f8Wen4UnvS5qsWLlj-3BcWdvlwRbpZHw_lSso4_EOwUah8ryqXjueXcOyPX3nU4sIf8apYj4MTyMZFqfBlGdr3d9YU8uozcDk6xjuAgNWh3MYHcKgWnx5d1i9ZQnPAOitLzjFyP3D2hQO8z_qceBR8GOjl0E3wzcz3VMGsFH7dKo327lLG6U6SfUqT_f1rlord4KvhjPttBzPT9UGpu1cVU4ZnUSmZcjbvKBJgLILsGneBurJBGBZPVtmVZQ8ESQ"/>
+</div>
+</div>
+<!-- Hero Headline -->
+<h1 class="reveal-init font-headline font-extrabold text-3xl sm:text-5xl md:text-6xl tracking-tight max-w-3xl mt-4 leading-tight">
+          Identidad visual audaz &amp; arte digital <span class="italic font-display font-light text-secondary drop-shadow-[0_0_12px_rgba(0,255,204,0.4)]">sin concesiones.</span>
+</h1>
+<p class="reveal-init font-body text-on-surface-variant text-base sm:text-lg max-w-xl mt-4 leading-relaxed">
+          Exploración estética radical para marcas contemporáneas, proyectos de arte urbano y arquitecturas digitales del mañana.
+        </p>
+<!-- Action pill buttons -->
+<div class="reveal-init flex flex-wrap items-center justify-center gap-4 mt-8">
+<button class="btn-sheen px-8 py-3.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-[0_0_25px_rgba(255,45,120,0.5)] hover:shadow-[0_0_35px_rgba(255,45,120,0.8)] hover:scale-[1.04] active:scale-95 flex items-center gap-2 group" onclick="openModal()" type="button">
+<span>Iniciar Proyecto</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">north_east</span>
+</button>
+<a class="px-7 py-3.5 rounded-full bg-surface-container-high/70 hover:bg-surface-bright text-on-surface font-label text-xs uppercase tracking-widest font-semibold transition-all border border-outline-variant/40 hover:border-secondary/50 hover:shadow-[0_0_16px_rgba(0,255,204,0.25)] hover:scale-[1.03] active:scale-95 flex items-center gap-2 group" href="#trabajos">
+<span class="material-symbols-outlined text-secondary text-[18px] group-hover:rotate-45 transition-transform">grid_view</span>
+<span>Ver Trabajos</span>
+</a>
+</div>
+</div>
+</section>
+<!-- CLIENTS LOGO MARQUEE (HOVER PAUSE ENABLED) -->
+<section class="w-full py-8 bg-surface-container-lowest relative border-y border-outline-variant/30 overflow-hidden ticker-pause">
+<div class="max-w-7xl mx-auto px-4 mb-3 text-center">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70">Partners, Marcas &amp; Colaboraciones Estratégicas</span>
+</div>
+<!-- Infinite horizontal ticker with hover-pause -->
+<div class="relative w-full overflow-hidden flex items-center">
+<!-- Gradient Masks -->
+<div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
+<div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
+<div class="animate-ticker py-3 items-center gap-16">
+<!-- Item set 1 -->
+<div class="flex items-center gap-16 flex-shrink-0">
+<img alt="Logo Mojito" class="h-9 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxXIW5R8Y3WtoZhgjtz0Pr-CjYtWh55ERC4Cc2-VOhOzkcux1Mg7HIRh8VGJnE88mR53Z1ndmEIA_8YDjMRiZBeLTifMtMOOZQZEMd0oXgdWmYPJq-IzHBw5S_0eiGmGNKhUf6t6ApxpriQmxugb76Y6v7J5ymtVQnigGAPujGzf27aG-j8vhSDPMUW7l_vVWEGBYK_I3sxGWsdQ09x_Z93-gjMxOm8PSl1gERmZOyL5k-YNgQdu5KLnNBuzdKkzsWeA"/>
+<img alt="Logo Bizarro Estudio" class="h-9 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_NVjGwF59ueBkpcrr6fsFThxKRVU_hVPa0dEu8Ts-UUB5ymnhLATtpgYEHvE6Y8kx4EKV2zRmlQya2iPF4RSO4IeT5z4KTlfI7d3qY6zHdzlB4ClHmdR0Iit4m6sOEAum3JqFs5v2GO9NGNVxrhrMeHpSudQdceYkI1HmpZYXhDl65n9WEZeJq918vOKYKTPRIB2zlDwvFpiheSmvYY597BGw6J-rMnHI3LNrEy-MHNZkynOnjxOYESfk1YRAuTVH3A"/>
+<img alt="Club Carnalitos" class="h-8 sm:h-9 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRWqKtNtF2D6Dnbxn7yU5Ar0McPnZEzQYMZBT4jByy_HU8Fvrvks5gMRc1LUJPKUcGk-1GhejfUfQCCMLVzEO7NU7NKT9u5I8W9UAymTn0-XP47AUsOAv00Xr8ejwpNKfL61PLGSgoRU_3Vj5ItRYe73Z5v6xbOO78uxnmw9LC9o6x7gFlBUoix3fRHFlNYpHUdvrNJ1-wXTDoiU_yP7dZXV-GcS4GdQu4alpCWBdGilFlBO5WU86sy-wZ2cBMHcaVDw"/>
+<img alt="Suchile 2.0" class="h-9 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALOoeW548BYXSGHNslHwS4TOFHR8W-u6I3Ey7diQclUw6-CHPZpd5NpJ_CEDikYiBKHrXNShIxorIDCQ5vcN8jbghIhHWNILrWN0PvrPPrU0GqSbGBTFikkRAhlsUESCo8NZwZ9DifIxoD4pQPui_IYQeBpKDwyY6S-nw_uU8eJkkBv8QQI3dweUzr1JXJyVctnZiChYO5zKWA6Er9oLg0pT8zUTCymTITSCAhUMHprmw9AbljKEjzTbepENOKGNPZUA"/>
+<img alt="Santana Terraza" class="h-8 sm:h-9 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkd7UKTNcr0P87WSLnRodsRoL1wGm6QtTAmeXZzWHtd04Es8C0FYYtKdStLUr6d3i8nDsypFDyRJJmdO5T779pbxkZtoRmaYBcImrf2qml0_m4bqOmm07HWM6WJUSAZkWHDVKhExuZoQm432t0egg7TSbS5EYCuekF5kKEDVqFGL2NQ64TFm7y1_l9TSU3dOJIIhi3zUlTUuPOTWTjDIYgpoa0ocpbjMa8rvsTuqwg3TSCOe57ptvzxwKZyj-hGpg47Q"/>
+<img alt="Xente Soluciones Integrales" class="h-8 sm:h-9 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjB_tSzsTQlU7-DFe8yI8Lth6Q5m-bQWnH2gZZ-Hu4tY10COrNm0nOsgp5NkUrIqdsM0jnu2T3owZb64sMAfkHkZtVYKb96Jidh-4S7GKHF7jQsZheWHc11qEJlDZa2SNs1BrWK4PiNmUPcDMSI2xtRAr4oZ1Oow-0DunN_vbOGCB-tFCUvC4N8oaB_sJk_ztmdm2FGY0incQ_4jKPHv3aLx9KrjiR8A56V33LkUX3vJRuEmDDu29auxEa67DbPas6yw"/>
+</div>
+<!-- Item set 2 (duplicate for continuous smooth loop) -->
+<div class="flex items-center gap-16 flex-shrink-0">
+<img alt="Logo Mojito" class="h-9 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeDnSUGxykqGx02qcrYsmOqgpsPxUpUPtNygTyh6t4OPOsZ5Jz4EPKMcpDV13PCVjxRRjXZSqnythczCmZ9SfvOyu-Y5-EydJidyxtIiE6DmQMwx8Kn4uTOAsF-1tKe-3wgc2Or141tJoe7p288gJv5rTM4Ty2_3EpncRsiJ45znxGy_gC9qEgF7jGObBBBS542O_vIu_V_XqGf9fBYXA1nmjN6LlusSdsVyBzyVphtS6Xf-RIqixWKNazxwDFRWa7kA"/>
+<img alt="Logo Bizarro Estudio" class="h-9 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn_d7z48hOOxGWe6RmNMvGsxfx44bAM6vJfS8fhlE_PqC0Le4lODqhcs6ccu6xlDzu6SdDAAPtNWv2-tJCwo1bGbUxf9il_-13tLNGAIPf0KVLhcYLgLE46ALo4xpmapNuuAi19fmufM2WoGqrQW20tUl2af-3cKtzCZEc-YHUijsMRoCyceHVk1SAKAZTQGBjACn6FeH_jHlvWIK0JI3CaKj83auTqV5EKqxXWqt_WOI5_ep_xs7qH6a7Q5IJHZ2uzg"/>
+<img alt="Club Carnalitos" class="h-8 sm:h-9 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcvwncGXDmvTmDUGsPWlbyDV1BMbxD2DeRWq-rjq9zfkuwIVZqEZEsXLWjtiC2iUmjQVx8qElmrK65a2ebusaJRAlqtqz4wgrOJKw4s63YnJFXwOpOs-W4Y5IAybf4upYGWYWg8_yo7hRG92hgzOThsz2I-89L2mFeexa1192ndxqKNdHC_NIowCFlnqk57ySy94jGgP_8CW94feM67Qw1cyDww_Q_8K_co6rBtGwdoIMeKlqdESffyZ_h3S6GHB30jQ"/>
+<img alt="Suchile 2.0" class="h-9 sm:h-10 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjUdmanSsBMA5k7eNgZ42Yw1dCuA6KBd80bWRcBXZ_LMWx9oy3KciTh7tlRfyQbSmbihjrIxxzIO-5LysefZHrPZjKutyeddg1k-uN3-dhutGonaLa22JoRMI_4WfYxhOn_IkmGXQs5eRMxb4VcUKsIWy2bb-gi7cInQP994U6zSGLfXYVagSQSdNUhWrfGkjq2zHFSs5Qrvtrguor6kV28F_WuCAkkNcaB8SfuDvAhxohDQ0Wx0fL-Oqz0DTS5AjefA"/>
+<img alt="Santana Terraza" class="h-8 sm:h-9 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv7QNxu20SZb90UO3ShIx60ic7NaYocdTIuAy8CXfLblnfiEFpcfmPfMX-Svc8ym_iOXuJdLOKlTaeWSylHnSjNqDoYetkZwDIBBOu490vy6h5ilQNKYXsK2YzQ3x80O5TjGWEEhTo3dJc4a1KF63Om1KywqE9clRG04qjmc7po8LObVWGfjpo08qYHNSSc75HvcQkWXRUQIu6rfdLb8Rbm3_GARDC8wq65Ir_UcsWFMinmCSvIkYytv2kjGhZ4_DGew"/>
+<img alt="Xente Soluciones Integrales" class="h-8 sm:h-9 w-auto object-contain opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300 filter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEaISZZ6hTQcZ4L2W9ppZZAtN6CdPxNCH_Q6s-VG_t6RgTpyI03YnzKFdoIIFThGQlphkSJgFibqPQ8Qh5CwcMNtmM5e3tFMo4Jfoe-Jo4GbVxYIS1IkyRPrvGijIcEiv8cc48SOWN6qjWHxd5vPb0HVjea30F-mTdyCTEOJ0qKW2CzloFgrnvb47i-TkPbqlFLEYarEIW2uFk3ve-ZaN7LfgJpZTGRXwgWCtFNWiCAQcT9xCeLSu9jsU8UgNtKdkshQ"/>
+</div>
+</div>
+</div>
+</section>
+<!-- MASTER SERVICES / SOBRE MÍ -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12 py-24 w-full" id="servicios">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+<div class="reveal-init lg:col-span-5 flex flex-col gap-4">
+<div class="flex items-center gap-2 text-primary font-label text-xs uppercase tracking-widest font-bold">
+<span class="w-2.5 h-0.5 bg-primary"></span>
+<span>Perfil &amp; Destrezas</span>
+</div>
+<h2 class="font-headline text-4xl sm:text-5xl font-extrabold tracking-tight">
+            Sobre <span class="italic font-display font-light text-primary">Mí .</span>
+</h2>
+<div class="w-12 h-1 bg-primary mt-1 mb-3"></div>
+</div>
+<div class="reveal-init lg:col-span-7 flex flex-col gap-4">
+<p class="font-headline text-xl sm:text-2xl font-normal text-on-surface leading-snug">
+            Soy especialista en diseño de identidad visual y la creación de contenido para redes sociales. Así como en la <span class="text-secondary font-semibold">ilustración digital</span> y el <span class="text-tertiary font-semibold">arte urbano</span>.
+          </p>
+<p class="text-on-surface-variant font-body text-sm sm:text-base leading-relaxed">
+            Combino rigor técnico suizo con la explosión experimental del cyberpunk y el streetwear. Cada sistema gráfico responde a una voz inconfundible diseñada para permanecer, resonar y dominar cualquier superficie donde se proyecte.
+          </p>
+</div>
+</div>
+<!-- 4 Services Cards Grid (01 to 04) with Lift, Glow & Tilt Micro-interactions -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 01 -->
+<div class="reveal-init service-card group relative bg-surface-container rounded-xl p-8 border border-outline-variant/30 hover:border-secondary/60 overflow-hidden hover:shadow-[0_16px_36px_rgba(0,255,204,0.2)] flex flex-col justify-between min-h-[320px]">
+<span class="absolute top-2 right-4 font-headline text-7xl font-black text-secondary/10 group-hover:text-secondary/30 group-hover:scale-110 transition-all select-none duration-300">01</span>
+<div class="relative z-10 flex flex-col gap-5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary border border-outline-variant/40 group-hover:bg-secondary group-hover:text-surface-container-lowest transition-all group-hover:rotate-6">
+<span class="material-symbols-outlined text-[24px]">category</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface group-hover:text-secondary transition-colors">Identidad Visual</h3>
+<p class="text-xs uppercase tracking-widest font-label text-secondary font-semibold mt-1">Branding • Logotipos • Sistemas</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+              Construcción de identidades duraderas, manuales de marca vivos, tipografías personalizadas y aplicaciones multiformato de alta precisión.
+            </p>
+</div>
+<div class="relative z-10 pt-4 flex items-center justify-between text-xs font-label text-on-surface-variant border-t border-outline-variant/20">
+<span>Sistemas completos</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform text-secondary">arrow_forward</span>
+</div>
+</div>
+<!-- Card 02 -->
+<div class="reveal-init service-card group relative bg-surface-container rounded-xl p-8 border border-outline-variant/30 hover:border-primary/60 overflow-hidden hover:shadow-[0_16px_36px_rgba(255,45,120,0.2)] flex flex-col justify-between min-h-[320px]">
+<span class="absolute top-2 right-4 font-headline text-7xl font-black text-primary/10 group-hover:text-primary/30 group-hover:scale-110 transition-all select-none duration-300">02</span>
+<div class="relative z-10 flex flex-col gap-5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary border border-outline-variant/40 group-hover:bg-primary group-hover:text-surface-container-lowest transition-all group-hover:rotate-6">
+<span class="material-symbols-outlined text-[24px]">auto_stories</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Editorial</h3>
+<p class="text-xs uppercase tracking-widest font-label text-primary font-semibold mt-1">Estructura • Libros • Memorias</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+              Composición minuciosa, grillas experimentales, narrativa visual de ritmo constante y jerarquías tipográficas de impacto sensorial.
+            </p>
+</div>
+<div class="relative z-10 pt-4 flex items-center justify-between text-xs font-label text-on-surface-variant border-t border-outline-variant/20">
+<span>Publicaciones físicas y PDF</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform text-primary">arrow_forward</span>
+</div>
+</div>
+<!-- Card 03 -->
+<div class="reveal-init service-card group relative bg-surface-container rounded-xl p-8 border border-outline-variant/30 hover:border-tertiary/60 overflow-hidden hover:shadow-[0_16px_36px_rgba(255,224,74,0.2)] flex flex-col justify-between min-h-[320px]">
+<span class="absolute top-2 right-4 font-headline text-7xl font-black text-tertiary/10 group-hover:text-tertiary/30 group-hover:scale-110 transition-all select-none duration-300">03</span>
+<div class="relative z-10 flex flex-col gap-5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary border border-outline-variant/40 group-hover:bg-tertiary group-hover:text-surface-container-lowest transition-all group-hover:rotate-6">
+<span class="material-symbols-outlined text-[24px]">brush</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface group-hover:text-tertiary transition-colors">Ilustración</h3>
+<p class="text-xs uppercase tracking-widest font-label text-tertiary font-semibold mt-1">Streetwear • Personajes • Portadas</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+              Estilo urbano, surrealismo con sello propio, acabados vectoriales texturizados y personajes cargados de simbolismo neo-pop.
+            </p>
+</div>
+<div class="relative z-10 pt-4 flex items-center justify-between text-xs font-label text-on-surface-variant border-t border-outline-variant/20">
+<span>Licencias y piezas únicas</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform text-tertiary">arrow_forward</span>
+</div>
+</div>
+<!-- Card 04 -->
+<div class="reveal-init service-card group relative bg-surface-container rounded-xl p-8 border border-outline-variant/30 hover:border-secondary/60 overflow-hidden hover:shadow-[0_16px_36px_rgba(0,255,204,0.2)] flex flex-col justify-between min-h-[320px]">
+<span class="absolute top-2 right-4 font-headline text-7xl font-black text-secondary/10 group-hover:text-secondary/30 group-hover:scale-110 transition-all select-none duration-300">04</span>
+<div class="relative z-10 flex flex-col gap-5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary border border-outline-variant/40 group-hover:bg-secondary group-hover:text-surface-container-lowest transition-all group-hover:rotate-6">
+<span class="material-symbols-outlined text-[24px]">dynamic_feed</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface group-hover:text-secondary transition-colors">Redes Sociales</h3>
+<p class="text-xs uppercase tracking-widest font-label text-secondary font-semibold mt-1">Campañas • Reels • Feeds UI</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+              Estrategia de contenido visual, templates dinámicos para Instagram/TikTok, animaciones cortas y estética uniforme para alto engagement.
+            </p>
+</div>
+<div class="relative z-10 pt-4 flex items-center justify-between text-xs font-label text-on-surface-variant border-t border-outline-variant/20">
+<span>Calendarios y lanzamientos</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform text-secondary">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- PROYECTOS DESTACADOS SLIDER -->
+<section class="w-full py-20 bg-surface-container-lowest/60 border-y border-outline-variant/30 relative" id="trabajos">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="reveal-init flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12">
+<div>
+<div class="flex items-center gap-2 text-secondary font-label text-xs uppercase tracking-widest font-bold">
+<span class="w-2.5 h-0.5 bg-secondary"></span>
+<span>Portafolio Seleccionado</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-5xl font-black tracking-tight mt-1">Proyectos Destacados</h2>
+</div>
+<!-- Slider Controls -->
+<div class="flex items-center gap-3">
+<button aria-label="Proyecto anterior" class="w-12 h-12 rounded-full bg-surface-container-high hover:bg-surface-bright border border-outline-variant/40 flex items-center justify-center text-on-surface hover:text-secondary transition-all shadow-md active:scale-90 hover:scale-105" id="proj-prev-btn">
+<span class="material-symbols-outlined">west</span>
+</button>
+<button aria-label="Proyecto siguiente" class="w-12 h-12 rounded-full bg-surface-container-high hover:bg-surface-bright border border-outline-variant/40 flex items-center justify-center text-on-surface hover:text-secondary transition-all shadow-md active:scale-90 hover:scale-105" id="proj-next-btn">
+<span class="material-symbols-outlined">east</span>
+</button>
+</div>
+</div>
+<!-- Projects Carousel Track with Auto-smooth Slide -->
+<div class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 scrollbar-none" id="projects-track" style="scrollbar-width: none;">
+<!-- Project 1: Lumina Studio -->
+<div class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-secondary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,255,204,0.15)]">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Futuristic cyber-minimalist user interface dashboard with dark glass cards" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLQRZ2A30YFU86eohi0451Ry5I1wD4nIiVjui2AOQWNc1Gn33GTwO69G3EW5obLWJejVYOh2GJtX2QFjkdmIIawvUwgY2jEB6Wh4GF0pIKScd1Qn8i9x6hpW5_OzYZ0cXDNPGxDA6CecXb6FahVBKAy_6AZ4WZAWkOGgeRXnIWkkDa4JCITUrxYrpVR69oKjKYLy8uDU5A_HFyBgGPqb9T6iZ9UZM6l2zYMzvWmvhTQ-OOQ3ZR7jN8"/>
+<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-[10px] font-label text-secondary uppercase tracking-widest font-bold border border-secondary/30">
+                Web • UI/UX
+              </span>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-xl text-on-surface group-hover:text-secondary transition-colors">Lumina Studio</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-secondary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">arrow_outward</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">
+                Plataforma interactiva para colectivo de artistas sonoros con audio reactivo y renders tridimensionales en WebGL.
+              </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Design System</span>
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Tailwind</span>
+</div>
+</div>
+</div>
+<!-- Project 2: Moden Interiors -->
+<div class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-primary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(255,45,120,0.15)]">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Architectural brutalist interior design brand identity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7RodssATz5l9dLRu8vTqsM763lXAqifoGmg-SDj9PtZJNWn9cY9LkX-QR55rocxtr-p4ZxUZh6YNby-msQ5-2F_rmsQ1ZQMsqZLbFGoUsGXFjP3yFT6k9mM_sjr07skRZSpRp_Pkv7xpsEhlxN-N2myuPGI4Q-TqcZM7TdGi3YK_-XH-QQ9MSOq9p2cJqRVk6Pm91pxA8DFOWL-SRiyP19GZWRcvCPHBuVf7zoK6KejTnVxAFbYWF"/>
+<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-[10px] font-label text-primary uppercase tracking-widest font-bold border border-primary/30">
+                E-Commerce
+              </span>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-xl text-on-surface group-hover:text-primary transition-colors">Moden Interiors</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">arrow_outward</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">
+                Arquitectura de compra premium para estudio de mobiliario escandinavo con configurador 3D en tiempo real.
+              </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Shopify Plus</span>
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Art Direction</span>
+</div>
+</div>
+</div>
+<!-- Project 3: Nexora Protocol -->
+<div class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-tertiary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(255,224,74,0.15)]">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Digital art exhibition portfolio poster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeLR1PHwwfJ3G0xDmTQazOEFZQGrb2RtjEypt9ZA13TJINrT6I8vrhdRT8rqYaGy5ilyCZwNmpvyaLTc8ss9MfqA1fZYbdOGnO6gXbJPjOJCJBRTeejcC5WftStFDb8-0vJyI7ossFCVEIDvvh4_mHAX7raCqW-GZ34gTSAm1u1ULm-kaytWACuxtesK2iDcWnHahnr3LxdxXe0tJLuLG3nuxzvJH1LdHTY6OUMXYhj9__1YHG_3MG"/>
+<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-[10px] font-label text-tertiary uppercase tracking-widest font-bold border border-tertiary/30">
+                Portfolio
+              </span>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-xl text-on-surface group-hover:text-tertiary transition-colors">Nexora Protocol</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-tertiary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">arrow_outward</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">
+                Identidad de marca y landing editorial para protocolo descentralizado con tipografías hiper-geométricas.
+              </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Web3 UI</span>
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Branding</span>
+</div>
+</div>
+</div>
+<!-- Project 4: Verse Analytics -->
+<div class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-secondary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,255,204,0.15)]">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Complex analytics SaaS dashboard interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_einxkZTACqSkLV1EJVpO2_902p64EgUIObADExTN31J-iU3P_wEI2PlzrgkbEVXyv-kdcdMlGUGOW3Cy-tKXmTO1KlqTtSbiUfyWrmzIbu4ch8g_jxVIkyxHwyO36-uTbsp2In5py_w4OsIm2jFjAlMPY3kX_Ig8XInpL_jixDG4BPUIIZ7IWfDrOL_S17M8UoYiIqqT5YqOzU_Ek-gGacOjeYQZCXns7hkuar2LugFtspmvdZt-"/>
+<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-[10px] font-label text-secondary uppercase tracking-widest font-bold border border-secondary/30">
+                Dashboard
+              </span>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-xl text-on-surface group-hover:text-secondary transition-colors">Verse Analytics</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-secondary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">arrow_outward</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">
+                Suite de visualización de datos en tiempo real para agencias de performance globales con microinteracciones finas.
+              </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Figma</span>
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Next.js UI</span>
+</div>
+</div>
+</div>
+<!-- Project 5: Solen Collective -->
+<div class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-primary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(255,45,120,0.15)]">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Editorial lifestyle fashion magazine cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASS7saRg8TITsLFxMeXmYFsIFZ_M4TCYjczNLiQGyuDtAlUE8wEuW5HONMei45al9ankOe3ZFEuELYu8ZVAAXQ9OcZO1Vkk6u-dfTz0RKUGXRjTtJwyZdHD9n57cus7re8KArUslQHrY6R_j26m1IrjKmEjzYc_07yJ6hA_AM5lwm2kLzTwIy30OQWyBIT-I6XlPbPFWsoraIh8R1HxsHHp50ca5dwEQvujG6rv7qfEzLY1X9zu1nI"/>
+<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-[10px] font-label text-primary uppercase tracking-widest font-bold border border-primary/30">
+                Lifestyle
+              </span>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline font-bold text-xl text-on-surface group-hover:text-primary transition-colors">Solen Collective</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">arrow_outward</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">
+                Dirección de arte completa y empaque sustentable para línea de eyewear vanguardista en Tokyo y CDMX.
+              </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Packaging</span>
+<span class="text-[10px] font-label px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant">Fotografía</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PAQUETES DE DISEÑO / PRICING -->
+<section class="max-w-6xl mx-auto px-6 lg:px-12 py-24 w-full" id="precios">
+<div class="reveal-init text-center flex flex-col items-center gap-3 mb-12">
+<div class="flex items-center gap-2 text-tertiary font-label text-xs uppercase tracking-widest font-bold">
+<span class="w-2.5 h-0.5 bg-tertiary"></span>
+<span>Tarifas Transparentes</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-5xl font-black tracking-tight">Planes de Inversión</h2>
+<p class="font-body text-on-surface-variant text-sm sm:text-base max-w-xl">
+          Sin tarifas ocultas ni contratos leoninos. Entregas ágiles y dedicación completa a tu marca.
+        </p>
+<!-- Monthly / Yearly Billing Toggle Switch -->
+<div class="mt-4 p-1 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center gap-1 shadow-inner">
+<button class="px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-bold transition-all duration-300 bg-primary text-on-primary shadow-[0_0_12px_rgba(255,45,120,0.4)]" id="billing-monthly-btn" onclick="setPricingCycle('monthly')">
+            Mensual
+          </button>
+<button class="px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300" id="billing-yearly-btn" onclick="setPricingCycle('yearly')">
+            Anual (Ahorra 20%)
+          </button>
+</div>
+</div>
+<!-- Pricing Grid: Básico vs Plus -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+<!-- Plan Básico -->
+<div class="reveal-init bg-surface-container rounded-2xl p-8 sm:p-10 border border-outline-variant/40 flex flex-col justify-between hover:border-outline transition-all duration-300 hover:shadow-xl">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label text-xs uppercase tracking-widest font-bold text-on-surface-variant">Paquete Esencial</span>
+<span class="material-symbols-outlined text-outline">tune</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mt-2">Básico</h3>
+<p class="text-xs text-on-surface-variant mt-1">Ideal para startups, creadores y marcas en etapa de despegue.</p>
+<div class="my-6">
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-4xl sm:text-5xl font-black text-on-surface transition-all duration-300" id="price-basic">$6,500</span>
+<span class="font-label text-xs text-on-surface-variant uppercase" id="currency-basic">MXN / mes</span>
+</div>
+<span class="text-[11px] font-label text-secondary mt-1 block">Aprox. $750 USD • Sin permanencia forzosa</span>
+</div>
+<!-- Feature list -->
+<ul class="flex flex-col gap-3 font-body text-xs sm:text-sm text-on-surface-variant pt-4 border-t border-outline-variant/20">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>1 solicitud activa simultánea</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Identidad visual base o landing page</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Entregas cada 48 a 72 horas</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Revisiones ilimitadas sobre la marcha</span>
+</li>
+<li class="flex items-center gap-3 text-outline">
+<span class="material-symbols-outlined text-outline text-sm">remove</span>
+<span>Dirección de arte 3D avanzada</span>
+</li>
+</ul>
+</div>
+<button class="w-full mt-8 py-3.5 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface font-label text-xs uppercase tracking-widest font-bold border border-outline-variant/40 hover:border-secondary/50 transition-all text-center hover:scale-[1.02] active:scale-95" onclick="openModal()" type="button">
+            Elegir Plan Básico
+          </button>
+</div>
+<!-- Plan Plus (Featured with Neon Gradient glow) -->
+<div class="reveal-init relative bg-surface-container-high rounded-2xl p-8 sm:p-10 border-2 border-primary shadow-[0_0_35px_rgba(255,45,120,0.25)] flex flex-col justify-between hover:shadow-[0_0_45px_rgba(255,45,120,0.35)] transition-all duration-300">
+<!-- Best value badge -->
+<div class="absolute -top-3.5 right-8 px-4 py-1 rounded-full bg-primary text-on-primary font-label text-[10px] uppercase tracking-widest font-black shadow-[0_0_12px_rgba(255,45,120,0.8)]">
+            MÁS POPULAR • BEST VALUE
+          </div>
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label text-xs uppercase tracking-widest font-bold text-primary">Acceso Completo VIP</span>
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mt-2">Plus</h3>
+<p class="text-xs text-on-surface-variant mt-1">Para empresas y proyectos que exigen un ritmo veloz y alta sofisticación.</p>
+<div class="my-6">
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-4xl sm:text-5xl font-black text-on-surface transition-all duration-300" id="price-plus">$8,500</span>
+<span class="font-label text-xs text-primary uppercase" id="currency-plus">MXN / mes</span>
+</div>
+<span class="text-[11px] font-label text-secondary mt-1 block">Aprox. $1,750 USD • Canal directo Slack / WhatsApp</span>
+</div>
+<!-- Feature list -->
+<ul class="flex flex-col gap-3 font-body text-xs sm:text-sm text-on-surface pt-4 border-t border-outline-variant/30">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+<span class="font-medium">2 solicitudes activas en simultáneo</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+<span>Identidad completa, Web App UI &amp; Social Feeds</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+<span>Entregas prioritarias en 24 a 48 horas</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+<span>Ilustración a medida y renders 3D incluidos</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+<span>Pausar o cancelar en cualquier momento</span>
+</li>
+</ul>
+</div>
+<button class="btn-sheen w-full mt-8 py-3.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-extrabold shadow-[0_0_20px_rgba(255,45,120,0.6)] hover:shadow-[0_0_30px_rgba(255,45,120,0.9)] hover:scale-[1.03] transition-all text-center active:scale-95" onclick="openModal()" type="button">
+            Adquirir Membresía Plus
+          </button>
+</div>
+</div>
+</section>
+<!-- TESTIMONIALS / CLIENTES RECOMENDANDO -->
+<section class="w-full py-20 bg-surface-container-lowest/80 border-y border-outline-variant/30 relative">
+<div class="max-w-6xl mx-auto px-6 lg:px-12">
+<div class="reveal-init flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12">
+<div>
+<div class="flex items-center gap-2 text-secondary font-label text-xs uppercase tracking-widest font-bold">
+<span class="w-2.5 h-0.5 bg-secondary"></span>
+<span>Comunidad &amp; Confianza</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl font-extrabold tracking-tight mt-1">Clientes Recomendando</h2>
+</div>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined animate-pulse" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined animate-pulse" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined animate-pulse" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined animate-pulse" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="material-symbols-outlined animate-pulse" style='font-variation-settings: "FILL" 1;'>star</span>
+<span class="font-label text-xs font-bold text-on-surface ml-2">5.0 / 5.0 Global</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Testimonial 1 -->
+<div class="reveal-init p-6 rounded-xl bg-surface-container border border-outline-variant/30 flex flex-col justify-between gap-6 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_24px_rgba(0,255,204,0.1)]">
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              “Luis llevó nuestra marca de un concepto abstracto a una presencia visual imponente que nos diferenció de inmediato en la industria.”
+            </p>
+<div class="flex items-center gap-3 pt-3 border-t border-outline-variant/20">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-headline font-bold text-secondary text-sm">DM</div>
+<div>
+<p class="font-headline text-xs font-bold text-on-surface">Daniel M.</p>
+<p class="font-label text-[10px] text-on-surface-variant">Creative Director • Kinetik</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="reveal-init p-6 rounded-xl bg-surface-container border border-outline-variant/30 flex flex-col justify-between gap-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_24px_rgba(255,45,120,0.1)]">
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              “La velocidad de respuesta y la precisión en cada pieza del sistema de diseño nos permitieron lanzar 3 semanas antes del deadline previsto.”
+            </p>
+<div class="flex items-center gap-3 pt-3 border-t border-outline-variant/20">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-headline font-bold text-primary text-sm">LR</div>
+<div>
+<p class="font-headline text-xs font-bold text-on-surface">Lila R.</p>
+<p class="font-label text-[10px] text-on-surface-variant">CEO • Nexora Lab</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="reveal-init p-6 rounded-xl bg-surface-container border border-outline-variant/30 flex flex-col justify-between gap-6 hover:border-tertiary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_24px_rgba(255,224,74,0.1)]">
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              “El toque de ilustración urbana y street style es inigualable. Nadie en el mercado ofrece esa mezcla de técnica editorial y vibra neón.”
+            </p>
+<div class="flex items-center gap-3 pt-3 border-t border-outline-variant/20">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-headline font-bold text-tertiary text-sm">NB</div>
+<div>
+<p class="font-headline text-xs font-bold text-on-surface">Noah B.</p>
+<p class="font-label text-[10px] text-on-surface-variant">Product Lead • Verse Protocol</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 4 -->
+<div class="reveal-init p-6 rounded-xl bg-surface-container border border-outline-variant/30 flex flex-col justify-between gap-6 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_24px_rgba(0,255,204,0.1)]">
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              “Tener a Inox One como partner mensual en nuestros feeds y stories duplicó nuestro alcance orgánico en menos de 60 días.”
+            </p>
+<div class="flex items-center gap-3 pt-3 border-t border-outline-variant/20">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-headline font-bold text-secondary text-sm">ST</div>
+<div>
+<p class="font-headline text-xs font-bold text-on-surface">Sofia T.</p>
+<p class="font-label text-[10px] text-on-surface-variant">Marketing Head • Solen</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PREGUNTAS FRECUENTES (FAQ INTERACTIVO CON MAX-HEIGHT SLIDE) -->
+<section class="max-w-4xl mx-auto px-6 lg:px-8 py-24 w-full" id="faq">
+<div class="reveal-init text-center mb-12">
+<div class="flex items-center justify-center gap-2 text-primary font-label text-xs uppercase tracking-widest font-bold">
+<span class="w-2.5 h-0.5 bg-primary"></span>
+<span>Claridad Total</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl font-extrabold tracking-tight mt-1">Preguntas Frecuentes</h2>
+<p class="text-on-surface-variant text-sm mt-2">Todo lo que necesitas saber antes de empezar a colaborar juntos.</p>
+</div>
+<div class="flex flex-col gap-4" id="faq-accordion">
+<!-- FAQ Item 1 -->
+<div class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
+<button class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer" onclick="toggleFaq(1)" type="button">
+<span class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
+              1. ¿Cómo cotizo un diseño?
+            </span>
+<span class="material-symbols-outlined text-outline-variant text-[22px] transition-transform duration-300 group-hover:text-primary" id="faq-icon-1">
+              add
+            </span>
+</button>
+<div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out border-outline-variant/20 px-6 text-on-surface-variant text-sm font-body leading-relaxed" id="faq-content-1">
+<div class="pb-6 pt-1 border-t border-outline-variant/20">
+              Puedes cotizar directamente dando click en el botón <strong>“Contacto”</strong> en el menú superior o llenando el formulario emergente. Cuéntame los objetivos, fechas límite y referencias que tengas. En menos de 24 horas recibirás un desglose transparente y propuesta estimada.
+            </div>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
+<button class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer" onclick="toggleFaq(2)" type="button">
+<span class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
+              2. ¿Dónde puedo contactar a Inox One?
+            </span>
+<span class="material-symbols-outlined text-outline-variant text-[22px] transition-transform duration-300 group-hover:text-primary" id="faq-icon-2">
+              add
+            </span>
+</button>
+<div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out border-outline-variant/20 px-6 text-on-surface-variant text-sm font-body leading-relaxed" id="faq-content-2">
+<div class="pb-6 pt-1 border-t border-outline-variant/20">
+              Vía email oficial en <code class="text-secondary font-mono">contacto@inoxone.dev</code>, a través de mensajería directa en Instagram/LinkedIn, o agendando una videollamada de descubrimiento técnico mediante el botón de contacto de este sitio.
+            </div>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
+<button class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer" onclick="toggleFaq(3)" type="button">
+<span class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
+              3. ¿Qué incluye el costo del diseño?
+            </span>
+<span class="material-symbols-outlined text-outline-variant text-[22px] transition-transform duration-300 group-hover:text-primary" id="faq-icon-3">
+              add
+            </span>
+</button>
+<div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out border-outline-variant/20 px-6 text-on-surface-variant text-sm font-body leading-relaxed" id="faq-content-3">
+<div class="pb-6 pt-1 border-t border-outline-variant/20">
+              Incluye conceptualización visual, rondas iterativas de refinamiento, entrega de archivos finales vectoriales (AI, SVG, PDF), fuentes tipográficas bajo licencia, guías de estilo, especificaciones técnicas para imprenta o código web, y cesión completa de derechos patrimoniales comerciales.
+            </div>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
+<button class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer" onclick="toggleFaq(4)" type="button">
+<span class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
+              4. ¿En cuánto tiempo está listo el diseño?
+            </span>
+<span class="material-symbols-outlined text-outline-variant text-[22px] transition-transform duration-300 group-hover:text-primary" id="faq-icon-4">
+              add
+            </span>
+</button>
+<div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out border-outline-variant/20 px-6 text-on-surface-variant text-sm font-body leading-relaxed" id="faq-content-4">
+<div class="pb-6 pt-1 border-t border-outline-variant/20">
+              Entregas de piezas tácticas (posts, banners, iconos) toman entre 48 a 72 horas. Identidades de marca integrales o landing pages de alto calibre suelen desarrollarse en 2 a 3 semanas con entregables intermedios para validación rápida.
+            </div>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
+<button class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer" onclick="toggleFaq(5)" type="button">
+<span class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
+              5. ¿En qué país vive Inox One?
+            </span>
+<span class="material-symbols-outlined text-outline-variant text-[22px] transition-transform duration-300 group-hover:text-primary" id="faq-icon-5">
+              add
+            </span>
+</button>
+<div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out border-outline-variant/20 px-6 text-on-surface-variant text-sm font-body leading-relaxed" id="faq-content-5">
+<div class="pb-6 pt-1 border-t border-outline-variant/20">
+              Luis Pérez radica y opera su estudio base desde México (CDMX / Guadalajara), con disponibilidad horaria alineada para proyectos en Estados Unidos, Europa y toda Latinoamérica de manera 100% remota y asíncrona.
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- MASTER CALL TO ACTION (CTA FINAL) -->
+<section class="max-w-6xl mx-auto px-6 lg:px-12 pb-24 w-full">
+<div class="reveal-init relative rounded-3xl bg-surface-container-high p-8 sm:p-14 border border-outline-variant/40 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] text-center flex flex-col items-center">
+<!-- Ambient colorful glows -->
+<div class="absolute -top-24 -left-24 w-72 h-72 bg-primary/20 rounded-full blur-3xl pointer-events-none animate-glow-pulse"></div>
+<div class="absolute -bottom-24 -right-24 w-72 h-72 bg-secondary/20 rounded-full blur-3xl pointer-events-none animate-glow-pulse" style="animation-delay: 2s;"></div>
+<div class="relative z-10 max-w-2xl flex flex-col items-center gap-4">
+<span class="px-4 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/50 text-[11px] font-label uppercase tracking-widest text-secondary font-bold hover:scale-105 transition-transform cursor-default">
+            Disponibilidad Inmediata • Slots Q2
+          </span>
+<h2 class="font-headline text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mt-2">
+            Diseños, <span class="italic font-display font-light text-primary drop-shadow-[0_0_15px_rgba(255,45,120,0.5)]">Fuera de lo común.</span>
+</h2>
+<p class="font-body text-on-surface-variant text-base sm:text-lg max-w-xl">
+            Soluciones gráficas no convencionales para proyectos que se niegan a verse genéricos.
+          </p>
+<div class="flex flex-wrap items-center justify-center gap-4 mt-6">
+<button class="btn-sheen px-8 py-3.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all shadow-[0_0_20px_rgba(255,45,120,0.5)] hover:shadow-[0_0_30px_rgba(255,45,120,0.8)] hover:scale-105 active:scale-95" onclick="openModal()" type="button">
+              Contactar Ahora
+            </button>
+<a class="px-8 py-3.5 rounded-full bg-surface-container hover:bg-surface-bright text-on-surface font-label text-xs uppercase tracking-widest font-bold border border-outline-variant/40 hover:border-secondary transition-all hover:scale-105 active:scale-95" href="#trabajos">
+              Ver Portafolio
+            </a>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-lowest mt-20 pt-16 pb-12 border-t border-outline-variant/30 relative">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-outline-variant/20">
+<div class="md:col-span-6 flex flex-col gap-5">
+<div class="flex items-center gap-3">
+<img alt="5logo-20lp_4-p-3200.png" class="h-8 w-auto object-contain transition-transform duration-300 hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfrwH85vyHpxYwiG-u0VF1n4_c6STyYlOyh9sII9aOjTqq34Y1tMr75IRIBSqLGcas6B0NMQJd6PUUMp-U2-ya8xLVbLualJnt-oHdZMdLpjAPtoHJaQD4pB-V7rUcamLCq-nUgsk0SSqclnuRMvQ74NP_4-K4vwiB0eenMme50UPYml-axPTFSOw9PSZxXtNS3C_GiphIjeYKZli2Po5hVbL6vsp13J5sO8SO-tChIOopDVQWwsF1EzKjmpPmAVsQKw"/>
+<span class="font-headline font-bold text-xl tracking-tight text-on-surface">Luis Pérez <span class="text-primary">/</span> Inox One</span>
+</div>
+<p class="font-headline text-2xl lg:text-3xl font-bold tracking-tight text-on-surface leading-snug max-w-lg">
+          Diseño digital de alto impacto, interfaces vivas y código futurista sin concesiones.
+        </p>
+<div class="flex items-center gap-3 pt-2">
+<a aria-label="Instagram" class="w-10 h-10 rounded-full bg-surface-container-high hover:bg-surface-bright flex items-center justify-center text-on-surface-variant hover:text-secondary transition-all border border-outline-variant/30 hover:border-secondary/50 hover:shadow-[0_0_12px_rgba(0,255,204,0.3)] hover:-translate-y-1" href="#">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</a>
+<a aria-label="Dribbble" class="w-10 h-10 rounded-full bg-surface-container-high hover:bg-surface-bright flex items-center justify-center text-on-surface-variant hover:text-primary transition-all border border-outline-variant/30 hover:border-primary/50 hover:shadow-[0_0_12px_rgba(255,45,120,0.3)] hover:-translate-y-1" href="#">
+<span class="material-symbols-outlined text-[20px]">sports_basketball</span>
+</a>
+<a aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-surface-container-high hover:bg-surface-bright flex items-center justify-center text-on-surface-variant hover:text-secondary transition-all border border-outline-variant/30 hover:border-secondary/50 hover:shadow-[0_0_12px_rgba(0,255,204,0.3)] hover:-translate-y-1" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+<a aria-label="X" class="w-10 h-10 rounded-full bg-surface-container-high hover:bg-surface-bright flex items-center justify-center text-on-surface-variant hover:text-tertiary transition-all border border-outline-variant/30 hover:border-tertiary/50 hover:shadow-[0_0_12px_rgba(255,224,74,0.3)] hover:-translate-y-1" href="#">
+<span class="material-symbols-outlined text-[20px]">alternate_email</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-3 flex flex-col gap-4">
+<span class="font-label text-xs uppercase tracking-widest text-primary font-bold">Explorar</span>
+<ul class="flex flex-col gap-2.5 font-label text-sm text-on-surface-variant">
+<li class="hover:text-on-surface transition-colors"><a class="nav-link-sweep" data-path="servicios" href="#servicios">Servicios Especializados</a></li>
+<li class="hover:text-on-surface transition-colors"><a class="nav-link-sweep" data-path="trabajos" href="#trabajos">Casos de Estudio</a></li>
+<li class="hover:text-on-surface transition-colors"><a class="nav-link-sweep" data-path="precios" href="#precios">Planes de Inversión</a></li>
+<li class="hover:text-on-surface transition-colors"><a class="nav-link-sweep" data-path="faq" href="#faq">Preguntas Frecuentes</a></li>
+</ul>
+</div>
+<div class="md:col-span-3 flex flex-col gap-4">
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold">Contacto Directo</span>
+<p class="text-sm text-on-surface-variant font-body">Disponible para nuevos proyectos globales y consultorías selectas.</p>
+<a class="text-sm text-on-surface hover:text-secondary transition-colors font-mono" href="mailto:contacto@inoxone.dev">contacto@inoxone.dev</a>
+<div class="pt-2 flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-ping"></span>
+<span class="text-xs text-secondary font-label tracking-wide font-medium">DISPONIBLE Q2 / Q3 2026</span>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-label text-xs text-on-surface-variant">
+<p>Luis Pérez. All rights reserved. © 2026. Hecho por Inox One.</p>
+<div class="flex items-center gap-6">
+<span>Modo Oscuro Siempre Activo</span>
+<span class="text-outline">|</span>
+<a class="hover:text-on-surface transition-colors" href="#">Privacidad</a>
+<a class="hover:text-on-surface transition-colors" href="#">Términos</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- CONTACT POPUP MODAL (WITH SCALE-IN & BACKDROP BLUR TRANSITION) -->
+<div class="modal-closed fixed inset-0 z-50 overflow-y-auto bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300" id="contact-modal">
+<div class="relative w-full max-w-2xl bg-surface-container rounded-2xl border border-outline-variant/60 shadow-[0_20px_60px_rgba(0,0,0,0.8)] p-6 sm:p-8 overflow-hidden transition-all duration-300 transform">
+<div class="flex items-center justify-between pb-5 border-b border-outline-variant/30">
+<div class="flex items-center gap-2.5">
+<div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_8px_rgba(255,45,120,0.8)]"></div>
+<h2 class="font-headline font-bold text-xl text-on-surface tracking-tight">Iniciar Nuevo Proyecto</h2>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-all hover:rotate-90" onclick="closeModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<form class="mt-6 flex flex-col gap-5" onsubmit="event.preventDefault(); alert('¡Gracias! Mensaje recibido, te responderé en breve.'); closeModal();">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-label text-xs tracking-wider uppercase text-on-surface-variant mb-1.5">Nombre Completo *</label>
+<input class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-primary text-on-surface px-3.5 py-2.5 text-sm rounded outline-none transition-all placeholder:text-on-surface-variant/40" placeholder="Tu nombre" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label text-xs tracking-wider uppercase text-on-surface-variant mb-1.5">Correo Electrónico *</label>
+<input class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-primary text-on-surface px-3.5 py-2.5 text-sm rounded outline-none transition-all placeholder:text-on-surface-variant/40" placeholder="nombre@empresa.com" required="" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-label text-xs tracking-wider uppercase text-on-surface-variant mb-1.5">Asunto</label>
+<input class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-primary text-on-surface px-3.5 py-2.5 text-sm rounded outline-none transition-all placeholder:text-on-surface-variant/40" placeholder="Rediseño web, App, Branding..." type="text"/>
+</div>
+<div>
+<label class="block font-label text-xs tracking-wider uppercase text-on-surface-variant mb-1.5">Tipo de Proyecto</label>
+<select class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-primary text-on-surface px-3.5 py-2.5 text-sm rounded outline-none transition-all">
+<option value="web">Sitio Web / Portfolio Corporativo</option>
+<option value="app">Diseño de Aplicación Web o Móvil</option>
+<option value="design-system">Sistema de Diseño / UI Kit</option>
+<option value="other">Consultoría / Otro</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label text-xs tracking-wider uppercase text-on-surface-variant mb-2">Rango de Presupuesto Estimado</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-label">
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer border border-outline-variant/30 text-on-surface-variant transition-colors">
+<input class="accent-primary" name="budget" type="radio" value="&lt;2000"/>
+<span>&lt; $2,000</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer border border-outline-variant/30 text-on-surface-variant transition-colors">
+<input class="accent-primary" name="budget" type="radio" value="2000-5000"/>
+<span>$2,000 – $5,000</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer border border-outline-variant/30 text-on-surface-variant transition-colors">
+<input class="accent-primary" name="budget" type="radio" value="5000-10000"/>
+<span>$5,000 – $10,000</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer border border-outline-variant/30 text-on-surface-variant transition-colors">
+<input class="accent-primary" name="budget" type="radio" value="&gt;10000"/>
+<span>$10,000+</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer border border-outline-variant/30 text-on-surface-variant col-span-2 transition-colors">
+<input class="accent-primary" name="budget" type="radio" value="unsure"/>
+<span>No estoy seguro todavía</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-label text-xs tracking-wider uppercase text-on-surface-variant mb-1.5">Detalles del Proyecto *</label>
+<textarea class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-primary text-on-surface px-3.5 py-2.5 text-sm rounded outline-none transition-all placeholder:text-on-surface-variant/40 resize-none" placeholder="Cuéntame objetivos, plazos y requerimientos esenciales..." required="" rows="3"></textarea>
+</div>
+<label class="flex items-start gap-2.5 text-xs text-on-surface-variant cursor-pointer">
+<input class="mt-0.5 accent-primary rounded" required="" type="checkbox"/>
+<span class="leading-relaxed">Acepto la política de tratamiento de datos y privacidad para fines de contacto directo.</span>
+</label>
+<div class="flex items-center justify-end gap-3 pt-2">
+<button class="px-5 py-2 rounded-full font-label text-xs uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" onclick="closeModal()" type="button">Cancelar</button>
+<button class="btn-sheen px-6 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all shadow-[0_0_16px_rgba(255,45,120,0.5)] hover:scale-105 active:scale-95" type="submit">Enviar Mensaje</button>
+</div>
+</form>
+</div>
+</div>
+<!-- SCRIPTS & MICRO-INTERACTIONS LOGIC -->
+<script>
+  // 1. FAQ Accordion with smooth max-height animation & rotating plus icon
+  function toggleFaq(index) {
+    const content = document.getElementById('faq-content-' + index);
+    const icon = document.getElementById('faq-icon-' + index);
+    
+    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+    // Close all other accordions smoothly
+    document.querySelectorAll('[id^="faq-content-"]').forEach(el => {
+      el.style.maxHeight = '0px';
+    });
+    document.querySelectorAll('[id^="faq-icon-"]').forEach(ic => {
+      ic.textContent = 'add';
+      ic.classList.remove('rotate-45', 'text-primary');
+    });
+
+    if (!isOpen) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      icon.classList.add('rotate-45', 'text-primary');
+    }
+  }
+
+  // 2. Billing Toggle (Monthly / Yearly) with smooth price counter / flip transition
+  function setPricingCycle(cycle) {
+    const monthlyBtn = document.getElementById('billing-monthly-btn');
+    const yearlyBtn = document.getElementById('billing-yearly-btn');
+    const priceBasic = document.getElementById('price-basic');
+    const pricePlus = document.getElementById('price-plus');
+    const currBasic = document.getElementById('currency-basic');
+    const currPlus = document.getElementById('currency-plus');
+
+    priceBasic.style.opacity = '0';
+    pricePlus.style.opacity = '0';
+
+    setTimeout(() => {
+      if (cycle === 'yearly') {
+        yearlyBtn.className = 'px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-bold transition-all duration-300 bg-primary text-on-primary shadow-[0_0_12px_rgba(255,45,120,0.4)]';
+        monthlyBtn.className = 'px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300';
+        priceBasic.textContent = '$5,200';
+        pricePlus.textContent = '$6,800';
+        currBasic.textContent = 'MXN / mes (anual -20%)';
+        currPlus.textContent = 'MXN / mes (anual -20%)';
+      } else {
+        monthlyBtn.className = 'px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-bold transition-all duration-300 bg-primary text-on-primary shadow-[0_0_12px_rgba(255,45,120,0.4)]';
+        yearlyBtn.className = 'px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300';
+        priceBasic.textContent = '$6,500';
+        pricePlus.textContent = '$8,500';
+        currBasic.textContent = 'MXN / mes';
+        currPlus.textContent = 'MXN / mes';
+      }
+      priceBasic.style.opacity = '1';
+      pricePlus.style.opacity = '1';
+    }, 150);
+  }
+
+  // 3. Projects Slider Controls & Autoplay on Carousel
+  const track = document.getElementById('projects-track');
+  const prevBtn = document.getElementById('proj-prev-btn');
+  const nextBtn = document.getElementById('proj-next-btn');
+
+  if (track && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -380, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: 380, behavior: 'smooth' });
+    });
+  }
+
+  // 4. Modal Open/Close Controls with Transition
+  const modal = document.getElementById('contact-modal');
+  function openModal() {
+    modal.classList.remove('modal-closed');
+    modal.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('modal-open');
+    modal.classList.add('modal-closed');
+    document.body.style.overflow = '';
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('modal-open')) {
+      closeModal();
+    }
+  });
+
+  // 5. Scroll Reveal with IntersectionObserver
+  const revealElements = document.querySelectorAll('.reveal-init');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealElements.forEach((el) => revealObserver.observe(el));
+
+  // 6. Header Dark Mode Toggle
+  const darkModeToggleBtn = document.querySelector('header button[aria-label="Toggle dark mode"]');
+  if (darkModeToggleBtn) {
+    darkModeToggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+  }
+</script>
+</body></html>
