@@ -17,3 +17,8 @@ desktop.ini
 css.txt
 screen.png
 scratch/
+
+# Build & Dependencies
+node_modules/
+dist/
+.vite/
