@@ -4,50 +4,7 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. SELECTOR DE PLANES (MENSUAL vs ANUAL -20%)
-  const btnMonthly = document.getElementById('billingMonthly');
-  const btnAnnual = document.getElementById('billingAnnual');
-  const priceBasic = document.getElementById('priceBasic');
-  const pricePlus = document.getElementById('pricePlus');
-  const cycleBasic = document.getElementById('cycleBasic');
-  const cyclePlus = document.getElementById('cyclePlus');
-
-  const pricingData = {
-    monthly: {
-      basic: '6,500',
-      plus: '8,500',
-      cycle: 'MXN / mes'
-    },
-    annual: {
-      basic: '5,200',
-      plus: '6,800',
-      cycle: 'MXN / mes (-20% anual)'
-    }
-  };
-
-  if (btnMonthly && btnAnnual && priceBasic && pricePlus) {
-    btnMonthly.addEventListener('click', () => {
-      btnMonthly.classList.add('active');
-      btnAnnual.classList.remove('active');
-      
-      priceBasic.textContent = pricingData.monthly.basic;
-      pricePlus.textContent = pricingData.monthly.plus;
-      if (cycleBasic) cycleBasic.textContent = pricingData.monthly.cycle;
-      if (cyclePlus) cyclePlus.textContent = pricingData.monthly.cycle;
-    });
-
-    btnAnnual.addEventListener('click', () => {
-      btnAnnual.classList.add('active');
-      btnMonthly.classList.remove('active');
-
-      priceBasic.textContent = pricingData.annual.basic;
-      pricePlus.textContent = pricingData.annual.plus;
-      if (cycleBasic) cycleBasic.textContent = pricingData.annual.cycle;
-      if (cyclePlus) cyclePlus.textContent = pricingData.annual.cycle;
-    });
-  }
-
-  // 2. FILTRADO DE PROYECTOS DESTACADOS
+  // 1. FILTRADO DE PROYECTOS DESTACADOS
   const filterButtons = document.querySelectorAll('.filter-button');
   const projectCards = document.querySelectorAll('.project-card');
 
@@ -72,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
+  // 2. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
   const faqToggles = document.querySelectorAll('.faq-toggle-btn');
 
   faqToggles.forEach(btn => {
