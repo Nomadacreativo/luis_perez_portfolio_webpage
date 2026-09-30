@@ -36,29 +36,45 @@ Sitio web y portafolio interactivo de **Luis Pérez (Inox One)**, enfocado en Di
 ├── js/
 │   └── main.js         # Lógica interactiva (planes, filtros, acordeón FAQ, menú móvil)
 ├── assets/
-│   ├── fonts/          # Tipografías locales
+│   ├── fonts/          # Tipografías locales (Neulis Extrabold)
 │   └── img/
 │       ├── hero-surreal.png  # Arte central 3D
 │       ├── logos/            # Identidades y marcas colaboradoras
 │       └── projects/         # Casos de estudio (Festival Cerveza, Santana, DIF)
-├── .htaccess           # Configuración de Apache para Hostinger (HTTPS, Caché, Gzip, Seguridad)
-├── robots.txt          # Directivas de indexación y enlace al sitemap
-├── sitemap.xml         # Mapa de sitio canónico
+├── public/             # Archivos estáticos transferidos automáticamente al build (dist/)
+│   ├── .htaccess       # Directivas Apache (HTTPS, Compresión Gzip, Caché)
+│   ├── robots.txt      # Directivas de indexación y sitemap
+│   ├── sitemap.xml     # Mapa de sitio canónico
+│   └── screen.png      # Imagen de vista previa
+├── vite.config.js      # Configuración de bundler con salida en dist/ y base relativa
+├── vercel.json         # Configuración oficial para despliegues automáticos en Vercel
+├── netlify.toml        # Configuración para despliegues en Netlify
+├── package.json        # Dependencias y scripts de construcción (build, dev, preview)
 ├── DESIGN.md           # Especificación de tokens y diseño
 └── README.md           # Documentación técnica
 ```
 
 ---
 
-## 🌐 Despliegue en Hostinger
+## 🌐 Despliegue en Producción
 
-1. **Subida de Archivos:**
-   - Subir todo el contenido de este repositorio directamente al directorio `public_html/` de tu cuenta en Hostinger (mediante Git Deployment de Hostinger, SFTP o el Administrador de Archivos).
-2. **Configuración de Apache (.htaccess):**
-   - El archivo `.htaccess` incluido activa automáticamente:
+### Opción A: Vercel / Netlify / Cloudflare Pages (Recomendado CI/CD)
+1. Conecta el repositorio de GitHub directamente a tu plataforma.
+2. La plataforma detectará automáticamente la configuración:
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+3. Gracias a `vercel.json` y `vite.config.js`, no se requiere configuración manual adicional en el panel de control.
+
+### Opción B: Hostinger (Git Deployment / Web Hosting)
+1. **Despliegue con Build Automatizado en Hostinger:**
+   - En hPanel > Git Deployment, define:
+     - **Build Command:** `npm run build`
+     - **Output Directory:** `dist`
+2. **Subida Estática Directa:**
+   - Si se usa SFTP o subida directa, sube el contenido de la carpeta `dist/` a `public_html/`.
+3. **Configuración de Apache (.htaccess):**
+   - El archivo `.htaccess` ya se encuentra incluido en la raíz de `dist/` activando:
      - Forzado de protocolo seguro **HTTPS** y redirección limpia sin `www`.
      - Compresión **Gzip/Deflate** de textos, estilos y scripts.
      - Políticas de caché de navegador (**Expires**) de hasta 1 año para imágenes y fuentes.
      - Cabeceras de protección de seguridad (`X-Frame-Options`, `X-Content-Type-Options`, `X-XSS-Protection`).
-3. **Certificado SSL:**
-   - Asegúrate de tener activado el certificado SSL gratuito de por vida que ofrece Hostinger para `luisperez.pro`.
