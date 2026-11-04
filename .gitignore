@@ -18,6 +18,19 @@ css.txt
 screen.png
 scratch/
 
+# Environment variables & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
 # Build & Dependencies
 node_modules/
 dist/

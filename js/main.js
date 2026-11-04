@@ -145,10 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       if (targetId && targetId.length > 1) {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          e.preventDefault();
-          targetElement.scrollIntoView({ behavior: 'smooth' });
+        try {
+          const rawId = targetId.startsWith('#') ? targetId.slice(1) : targetId;
+          const targetElement = document.getElementById(rawId) || document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        } catch {
+          // Selector no estándar o inválido manejado de forma segura
         }
       }
     });

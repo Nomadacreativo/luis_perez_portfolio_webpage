@@ -891,7 +891,7 @@
                   <span class="font-label text-xs text-on-surface-variant uppercase" id="currency-basic">MXN /
                     mes</span>
                 </div>
-                <span class="text-[11px] font-label text-secondary mt-1 block">Aprox. $750 USD • Sin permanencia
+                <span class="text-[11px] font-label text-secondary mt-1 block">Aprox. $6500 mxn • Sin permanencia
                   forzosa</span>
               </div>
               <!-- Feature list -->
@@ -949,8 +949,7 @@
                     id="price-plus">$8,500</span>
                   <span class="font-label text-xs text-primary uppercase" id="currency-plus">MXN / mes</span>
                 </div>
-                <span class="text-[11px] font-label text-secondary mt-1 block">Aprox. $1,750 USD • Canal directo Slack /
-                  WhatsApp</span>
+                <span class="text-[11px] font-label text-secondary mt-1 block">Aprox. $12,000 mxn • Canal directo Slack / WhatsApp</span>
               </div>
               <!-- Feature list -->
               <ul
@@ -1527,27 +1526,31 @@
     // 4. Modal Open/Close Controls with Transition
     const modal = document.getElementById('contact-modal');
     function openModal() {
+      if (!modal) return;
       modal.classList.remove('modal-closed');
       modal.classList.add('modal-open');
       document.body.style.overflow = 'hidden';
     }
     function closeModal() {
+      if (!modal) return;
       modal.classList.remove('modal-open');
       modal.classList.add('modal-closed');
       document.body.style.overflow = '';
     }
 
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('modal-open')) {
-        closeModal();
-      }
-    });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('modal-open')) {
+          closeModal();
+        }
+      });
+    }
 
     // 5. Scroll Reveal with IntersectionObserver
     const revealElements = document.querySelectorAll('.reveal-init');

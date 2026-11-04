@@ -26,7 +26,6 @@
   "author": "Luis Pérez",
   "license": "UNLICENSED",
   "devDependencies": {
-    "serve": "^14.2.4",
     "vite": "^8.3.1"
   }
 }
