@@ -5,19 +5,34 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Luis Pérez · Inox One | Portafolio &amp; Dirección de Arte</title>
+  <meta name="description" content="Portafolio interactivo de Luis Pérez (Inox One) — Identidad visual, dirección de arte e ilustración digital." />
   <meta content="web_standard" name="shell-type" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&amp;family=Lexend:wght@400;500;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap"
     rel="stylesheet" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap"
     rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'Neulis';
+      src: url('./assets/fonts/neulis-extrabold.otf') format('opentype');
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Neulis';
+      src: url('./assets/fonts/neulis-extrabold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
     @layer base {
 
       html,
@@ -25,10 +40,19 @@
         margin: 0;
         padding: 0;
         scroll-behavior: smooth;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: 400;
       }
 
       body {
         overscroll-behavior: none;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: 'Neulis', sans-serif !important;
+        font-weight: 800 !important;
       }
 
       main> :first-child {
@@ -38,6 +62,90 @@
       main> :last-child {
         margin-bottom: 0 !important;
       }
+    }
+
+    /* Títulos y textos sobre fondo blanco */
+    #inox-page-root > section:not(#trabajos) h1,
+    #inox-page-root > section:not(#trabajos) h2 {
+      color: #6130f2 !important;
+      font-family: 'Neulis', sans-serif !important;
+      font-weight: 800 !important;
+    }
+
+    #inox-page-root > section:not(#trabajos) h1 span,
+    #inox-page-root > section:not(#trabajos) h2 span {
+      color: #6130f2 !important;
+      font-family: 'Neulis', sans-serif !important;
+      font-weight: 800 !important;
+      font-style: normal !important;
+    }
+
+    #inox-page-root > section:not(#trabajos) p {
+      color: #000000;
+      font-family: 'Poppins', sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    /* Contenedores oscuros y tarjetas con efecto Glassmorphism + imagen desenfocada */
+    .service-card,
+    #trabajos,
+    #projects-track > div,
+    #precios .grid > div,
+    #faq-accordion > div,
+    footer,
+    .bg-surface-container,
+    .bg-surface-container-high,
+    .bg-surface-container-lowest,
+    .bg-surface-container-lowest\/60,
+    .bg-surface-container-lowest\/80 {
+      background:
+        linear-gradient(145deg, rgba(28, 14, 88, 0.56) 0%, rgba(16, 8, 52, 0.68) 100%),
+        url('./assets/img/container-bg-pattern.jpg') center / cover no-repeat !important;
+      backdrop-filter: blur(22px) saturate(160%) !important;
+      -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+      border-color: rgba(255, 255, 255, 0.28) !important;
+      box-shadow: 0 14px 36px rgba(32, 14, 96, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    }
+
+    /* Títulos en fondo oscuro -> Lima #c0df16 y cuerpo de texto -> Blanco #ffffff */
+    .service-card h3,
+    #trabajos h2,
+    #projects-track h3,
+    #precios .grid h3,
+    #faq-accordion button span:first-child,
+    .bg-surface-container h2,
+    .bg-surface-container h3,
+    .bg-surface-container-high h2,
+    .bg-surface-container-high h3,
+    .bg-surface-container-lowest\/80 h2,
+    footer .font-headline {
+      color: #c0df16 !important;
+      font-family: 'Neulis', sans-serif !important;
+      font-weight: 800 !important;
+    }
+
+    .bg-surface-container-high h2 span {
+      color: #c0df16 !important;
+      font-family: 'Neulis', sans-serif !important;
+      font-weight: 800 !important;
+      font-style: normal !important;
+    }
+
+    .service-card p,
+    #trabajos p,
+    #projects-track p,
+    #precios .grid p,
+    #precios .grid li,
+    #faq-accordion div,
+    .bg-surface-container p,
+    .bg-surface-container-high p,
+    .bg-surface-container-lowest\/80 p,
+    footer p,
+    footer a,
+    footer li {
+      color: #ffffff !important;
+      font-family: 'Poppins', sans-serif !important;
+      font-weight: 400 !important;
     }
 
     ::-webkit-scrollbar {
@@ -247,38 +355,38 @@
             "outline": "#5a5068",
             "on-tertiary-fixed-variant": "#665200",
             "on-background": "#e8e0f0",
-            "primary": "#ff2d78",
-            "tertiary": "#ffe04a",
+            "primary": "#6130f2",
+            "tertiary": "#c0df16",
             "surface-container-lowest": "#0a0a12",
             "inverse-surface": "#e8e0f0",
             "secondary-container": "#004d3d",
-            "on-surface": "#e8e0f0",
+            "on-surface": "#ffffff",
             "on-primary-container": "#ffe0ec",
             "on-secondary-fixed-variant": "#004d4d",
             "surface": "#0f0f1a",
-            "tertiary-fixed-dim": "#ffe04a",
+            "tertiary-fixed-dim": "#c0df16",
             "on-secondary-fixed": "#001a1a",
             "surface-container-low": "#111118",
             "primary-fixed": "#ffe0ec",
-            "surface-tint": "#ff2d78",
+            "surface-tint": "#6130f2",
             "primary-fixed-dim": "#ff80aa",
-            "primary-container": "#b3004e",
+            "primary-container": "#4a1ecd",
             "on-secondary": "#001a1a",
             "surface-container-high": "#1e1e30",
             "on-primary-fixed": "#3d0020",
             "surface-dim": "#0f0f1a",
             "on-error": "#1a0000",
             "on-error-container": "#ffa0a0",
-            "secondary-fixed-dim": "#00e6b8",
+            "secondary-fixed-dim": "#c0df16",
             "on-tertiary-fixed": "#1a1000",
-            "on-primary": "#1a0010",
+            "on-primary": "#ffffff",
             "surface-variant": "#1e1e30",
-            "background": "#0a0a12",
+            "background": "#ffffff",
             "on-tertiary-container": "#fff0c0",
             "on-secondary-container": "#c0fff4",
             "surface-container-highest": "#28283e",
-            "on-surface-variant": "#a098b0",
-            "secondary": "#00ffcc",
+            "on-surface-variant": "#ffffff",
+            "secondary": "#c0df16",
             "tertiary-container": "#665200",
             "surface-bright": "#1a1a2e",
             "surface-container": "#141422",
@@ -294,10 +402,10 @@
             full: "0.75rem"
           },
           fontFamily: {
-            headline: ["Quicksand", "sans-serif"],
-            display: ["Quicksand", "sans-serif"],
-            body: ["Lexend", "sans-serif"],
-            label: ["Quicksand", "sans-serif"]
+            headline: ["Neulis", "sans-serif"],
+            display: ["Neulis", "sans-serif"],
+            body: ["Poppins", "sans-serif"],
+            label: ["Neulis", "sans-serif"]
           }
         }
       }
@@ -343,7 +451,7 @@
         </button>
         <button
           class="btn-sheen px-5 py-2 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-[0_0_16px_rgba(255,45,120,0.45)] hover:shadow-[0_0_24px_rgba(255,45,120,0.7)] hover:scale-[1.04] active:scale-[0.98]"
-          onclick="openModal()" type="button">
+          data-open-modal type="button">
           CONTACTO
         </button>
         <div
@@ -426,7 +534,7 @@
           <div class="reveal-init flex flex-wrap items-center justify-center gap-4 mt-8">
             <button
               class="btn-sheen px-8 py-3.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-[0_0_25px_rgba(255,45,120,0.5)] hover:shadow-[0_0_35px_rgba(255,45,120,0.8)] hover:scale-[1.04] active:scale-95 flex items-center gap-2 group"
-              onclick="openModal()" type="button">
+              data-open-modal type="button">
               <span>Iniciar Proyecto</span>
               <span
                 class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">north_east</span>
@@ -681,6 +789,7 @@
               class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-secondary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,255,204,0.15)]">
               <div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  alt="Lumina Studio - Interfaz web y sistema de diseño"
                   data-alt="Futuristic cyber-minimalist user interface dashboard with dark glass cards"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLQRZ2A30YFU86eohi0451Ry5I1wD4nIiVjui2AOQWNc1Gn33GTwO69G3EW5obLWJejVYOh2GJtX2QFjkdmIIawvUwgY2jEB6Wh4GF0pIKScd1Qn8i9x6hpW5_OzYZ0cXDNPGxDA6CecXb6FahVBKAy_6AZ4WZAWkOGgeRXnIWkkDa4JCITUrxYrpVR69oKjKYLy8uDU5A_HFyBgGPqb9T6iZ9UZM6l2zYMzvWmvhTQ-OOQ3ZR7jN8" />
                 <span
@@ -714,6 +823,7 @@
               class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-primary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(255,45,120,0.15)]">
               <div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  alt="Moden Interiors - Identidad de marca y e-commerce"
                   data-alt="Architectural brutalist interior design brand identity"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7RodssATz5l9dLRu8vTqsM763lXAqifoGmg-SDj9PtZJNWn9cY9LkX-QR55rocxtr-p4ZxUZh6YNby-msQ5-2F_rmsQ1ZQMsqZLbFGoUsGXFjP3yFT6k9mM_sjr07skRZSpRp_Pkv7xpsEhlxN-N2myuPGI4Q-TqcZM7TdGi3YK_-XH-QQ9MSOq9p2cJqRVk6Pm91pxA8DFOWL-SRiyP19GZWRcvCPHBuVf7zoK6KejTnVxAFbYWF" />
                 <span
@@ -748,6 +858,7 @@
               class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-tertiary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(255,224,74,0.15)]">
               <div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  alt="Nexora Protocol - Póster y portafolio de exhibición digital"
                   data-alt="Digital art exhibition portfolio poster"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeLR1PHwwfJ3G0xDmTQazOEFZQGrb2RtjEypt9ZA13TJINrT6I8vrhdRT8rqYaGy5ilyCZwNmpvyaLTc8ss9MfqA1fZYbdOGnO6gXbJPjOJCJBRTeejcC5WftStFDb8-0vJyI7ossFCVEIDvvh4_mHAX7raCqW-GZ34gTSAm1u1ULm-kaytWACuxtesK2iDcWnHahnr3LxdxXe0tJLuLG3nuxzvJH1LdHTY6OUMXYhj9__1YHG_3MG" />
                 <span
@@ -781,6 +892,7 @@
               class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-secondary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,255,204,0.15)]">
               <div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  alt="Verse Analytics - Interfaz de analítica SaaS"
                   data-alt="Complex analytics SaaS dashboard interface"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_einxkZTACqSkLV1EJVpO2_902p64EgUIObADExTN31J-iU3P_wEI2PlzrgkbEVXyv-kdcdMlGUGOW3Cy-tKXmTO1KlqTtSbiUfyWrmzIbu4ch8g_jxVIkyxHwyO36-uTbsp2In5py_w4OsIm2jFjAlMPY3kX_Ig8XInpL_jixDG4BPUIIZ7IWfDrOL_S17M8UoYiIqqT5YqOzU_Ek-gGacOjeYQZCXns7hkuar2LugFtspmvdZt-" />
                 <span
@@ -814,6 +926,7 @@
               class="snap-start flex-shrink-0 w-80 sm:w-96 rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden group hover:border-primary/60 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(255,45,120,0.15)]">
               <div class="relative h-60 w-full overflow-hidden bg-surface-container-highest">
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  alt="Solen Collective - Portada editorial y dirección de arte"
                   data-alt="Editorial lifestyle fashion magazine cover"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuASS7saRg8TITsLFxMeXmYFsIFZ_M4TCYjczNLiQGyuDtAlUE8wEuW5HONMei45al9ankOe3ZFEuELYu8ZVAAXQ9OcZO1Vkk6u-dfTz0RKUGXRjTtJwyZdHD9n57cus7re8KArUslQHrY6R_j26m1IrjKmEjzYc_07yJ6hA_AM5lwm2kLzTwIy30OQWyBIT-I6XlPbPFWsoraIh8R1HxsHHp50ca5dwEQvujG6rv7qfEzLY1X9zu1nI" />
                 <span
@@ -857,14 +970,14 @@
           <!-- Monthly / Yearly Billing Toggle Switch -->
           <div
             class="mt-4 p-1 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center gap-1 shadow-inner">
-            <button
+            <button type="button"
               class="px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-bold transition-all duration-300 bg-primary text-on-primary shadow-[0_0_12px_rgba(255,45,120,0.4)]"
-              id="billing-monthly-btn" onclick="setPricingCycle('monthly')">
+              id="billing-monthly-btn" data-pricing-cycle="monthly">
               Mensual
             </button>
-            <button
+            <button type="button"
               class="px-5 py-1.5 rounded-full font-label text-xs uppercase tracking-wider font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300"
-              id="billing-yearly-btn" onclick="setPricingCycle('yearly')">
+              id="billing-yearly-btn" data-pricing-cycle="yearly">
               Anual (Ahorra 20%)
             </button>
           </div>
@@ -921,7 +1034,7 @@
             </div>
             <button
               class="w-full mt-8 py-3.5 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface font-label text-xs uppercase tracking-widest font-bold border border-outline-variant/40 hover:border-secondary/50 transition-all text-center hover:scale-[1.02] active:scale-95"
-              onclick="openModal()" type="button">
+              data-open-modal type="button">
               Elegir Plan Básico
             </button>
           </div>
@@ -978,7 +1091,7 @@
             </div>
             <button
               class="btn-sheen w-full mt-8 py-3.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-extrabold shadow-[0_0_20px_rgba(255,45,120,0.6)] hover:shadow-[0_0_30px_rgba(255,45,120,0.9)] hover:scale-[1.03] transition-all text-center active:scale-95"
-              onclick="openModal()" type="button">
+              data-open-modal type="button">
               Adquirir Membresía Plus
             </button>
           </div>
@@ -1101,7 +1214,7 @@
             class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
             <button
               class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
-              onclick="toggleFaq(1)" type="button">
+              data-faq-toggle="1" type="button">
               <span
                 class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
                 1. ¿Cómo cotizo un diseño?
@@ -1127,7 +1240,7 @@
             class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
             <button
               class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
-              onclick="toggleFaq(2)" type="button">
+              data-faq-toggle="2" type="button">
               <span
                 class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
                 2. ¿Dónde puedo contactar a Inox One?
@@ -1153,7 +1266,7 @@
             class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
             <button
               class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
-              onclick="toggleFaq(3)" type="button">
+              data-faq-toggle="3" type="button">
               <span
                 class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
                 3. ¿Qué incluye el costo del diseño?
@@ -1179,7 +1292,7 @@
             class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
             <button
               class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
-              onclick="toggleFaq(4)" type="button">
+              data-faq-toggle="4" type="button">
               <span
                 class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
                 4. ¿En cuánto tiempo está listo el diseño?
@@ -1205,7 +1318,7 @@
             class="reveal-init rounded-xl bg-surface-container border border-outline-variant/40 overflow-hidden transition-all duration-300">
             <button
               class="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none group cursor-pointer"
-              onclick="toggleFaq(5)" type="button">
+              data-faq-toggle="5" type="button">
               <span
                 class="font-headline font-semibold text-base sm:text-lg text-on-surface group-hover:text-primary transition-colors">
                 5. ¿En qué país vive Inox One?
@@ -1255,7 +1368,7 @@
             <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
               <button
                 class="btn-sheen px-8 py-3.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all shadow-[0_0_20px_rgba(255,45,120,0.5)] hover:shadow-[0_0_30px_rgba(255,45,120,0.8)] hover:scale-105 active:scale-95"
-                onclick="openModal()" type="button">
+                data-open-modal type="button">
                 Contactar Ahora
               </button>
               <a class="px-8 py-3.5 rounded-full bg-surface-container hover:bg-surface-bright text-on-surface font-label text-xs uppercase tracking-widest font-bold border border-outline-variant/40 hover:border-secondary transition-all hover:scale-105 active:scale-95"
@@ -1354,14 +1467,13 @@
           <div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_8px_rgba(255,45,120,0.8)]"></div>
           <h2 class="font-headline font-bold text-xl text-on-surface tracking-tight">Iniciar Nuevo Proyecto</h2>
         </div>
-        <button
+        <button aria-label="Cerrar ventana"
           class="w-8 h-8 rounded-full bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-all hover:rotate-90"
-          onclick="closeModal()" type="button">
+          data-close-modal type="button">
           <span class="material-symbols-outlined text-[18px]">close</span>
         </button>
       </div>
-      <form class="mt-6 flex flex-col gap-5"
-        onsubmit="event.preventDefault(); alert('¡Gracias! Mensaje recibido, te responderé en breve.'); closeModal();">
+      <form class="mt-6 flex flex-col gap-5" id="contact-form">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block font-label text-xs tracking-wider uppercase text-on-surface-variant mb-1.5">Nombre
@@ -1444,7 +1556,7 @@
         <div class="flex items-center justify-end gap-3 pt-2">
           <button
             class="px-5 py-2 rounded-full font-label text-xs uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors"
-            onclick="closeModal()" type="button">Cancelar</button>
+            data-close-modal type="button">Cancelar</button>
           <button
             class="btn-sheen px-6 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-label text-xs uppercase tracking-widest font-bold transition-all shadow-[0_0_16px_rgba(255,45,120,0.5)] hover:scale-105 active:scale-95"
             type="submit">Enviar Mensaje</button>
@@ -1458,6 +1570,7 @@
     function toggleFaq(index) {
       const content = document.getElementById('faq-content-' + index);
       const icon = document.getElementById('faq-icon-' + index);
+      if (!content || !icon) return;
 
       const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
 
@@ -1476,6 +1589,12 @@
       }
     }
 
+    document.querySelectorAll('[data-faq-toggle]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggleFaq(btn.getAttribute('data-faq-toggle'));
+      });
+    });
+
     // 2. Billing Toggle (Monthly / Yearly) with smooth price counter / flip transition
     function setPricingCycle(cycle) {
       const monthlyBtn = document.getElementById('billing-monthly-btn');
@@ -1484,6 +1603,7 @@
       const pricePlus = document.getElementById('price-plus');
       const currBasic = document.getElementById('currency-basic');
       const currPlus = document.getElementById('currency-plus');
+      if (!monthlyBtn || !yearlyBtn || !priceBasic || !pricePlus || !currBasic || !currPlus) return;
 
       priceBasic.style.opacity = '0';
       pricePlus.style.opacity = '0';
@@ -1508,6 +1628,12 @@
         pricePlus.style.opacity = '1';
       }, 150);
     }
+
+    document.querySelectorAll('[data-pricing-cycle]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setPricingCycle(btn.getAttribute('data-pricing-cycle'));
+      });
+    });
 
     // 3. Projects Slider Controls & Autoplay on Carousel
     const track = document.getElementById('projects-track');
@@ -1538,6 +1664,23 @@
       document.body.style.overflow = '';
     }
 
+    document.querySelectorAll('[data-open-modal]').forEach(btn => {
+      btn.addEventListener('click', openModal);
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach(btn => {
+      btn.addEventListener('click', closeModal);
+    });
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        alert('¡Gracias! Mensaje recibido, te responderé en breve.');
+        closeModal();
+      });
+    }
+
     if (modal) {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -1554,16 +1697,20 @@
 
     // 5. Scroll Reveal with IntersectionObserver
     const revealElements = document.querySelectorAll('.reveal-init');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
 
-    revealElements.forEach((el) => revealObserver.observe(el));
+      revealElements.forEach((el) => revealObserver.observe(el));
+    } else {
+      revealElements.forEach((el) => el.classList.add('reveal-visible'));
+    }
 
     // 6. Header Dark Mode Toggle
     const darkModeToggleBtn = document.querySelector('header button[aria-label="Toggle dark mode"]');

@@ -7,8 +7,8 @@
 # Desactivar listado de directorios
 Options -Indexes
 
-# Bloquear acceso a archivos ocultos y de configuración (.git, .env, .htaccess, etc.)
-<FilesMatch "^\.">
+# Bloquear acceso a archivos ocultos y de configuración (.git, .env, .htaccess, etc., excepto .well-known)
+<FilesMatch "^\.(?!well-known)">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
@@ -18,8 +18,8 @@ Options -Indexes
   </IfModule>
 </FilesMatch>
 
-# Bloquear archivos de respaldo o logs
-<FilesMatch "\.(bak|config|sql|ini|log|sh|md)$">
+# Bloquear archivos de respaldo, configuración de empaquetado o logs
+<FilesMatch "(^package(-lock)?\.json$|^vite\.config\.js$|^vercel\.json$|^netlify\.toml$|\.(bak|config|sql|ini|log|sh|md|lock|toml)$)">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
@@ -106,8 +106,12 @@ Options -Indexes
   # Deshabilitar APIs innecesarias en el navegador
   Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
 
+  # Políticas adicionales de aislamiento y dominios cruzados
+  Header set X-Permitted-Cross-Domain-Policies "none"
+  Header set Cross-Origin-Opener-Policy "same-origin"
+
   # Content Security Policy (CSP)
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'self';"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests;"
 
   # Remover cabeceras de fingerprinting de servidor
   Header unset Server

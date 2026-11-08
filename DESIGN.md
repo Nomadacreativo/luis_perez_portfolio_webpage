@@ -71,40 +71,24 @@ spacing:
   space-xl: 2rem
 ---
 
-# Neon Tokyo — Retro-Futurism
+# Design System — Luis Pérez · Inox One
 
-## North Star: "Electric Nightscape"
-Cyberpunk-inspired. Moody dark backgrounds with vibrant neon accents that glow. Futuristic, Glassmorphism, immersive, and high-energy.
+## Core Visual Direction
+White canvas (`#ffffff`) paired with rich dark-purple pattern containers (`assets/img/container-bg-pattern.jpg`) using frosted Glassmorphism, specular borders, and high-contrast typography.
 
 ## Colors
-- **Primary (`#6130f2`):** Electric indigo — CTAs, focus states, active elements.
-- **Secondary (`#d9ff30`):** Lime neon — links, secondary actions, data highlights.
-- **Tertiary (`#1d1d1d`):** Dark contrast surface — badges, warnings, emphasis.
-- **Background (`#0a0a12`):** Near-black with electric indigo undertone.
-- Never use bright neon colors for large surface areas. They are accents only.
+- **Website Background (`#ffffff`):** Clean white canvas.
+- **Titles on White Background (`#6130f2`):** Electric purple (Morado).
+- **Body Text on White Background (`#000000`):** Pure black.
+- **Titles on Dark / Glassmorphic Containers (`#c0df16`):** Vibrant Lime.
+- **Body Text on Dark / Glassmorphic Containers (`#ffffff`):** Pure white.
 
-## Glassmorphism and Glow Effects (Core Pattern)
-- **Neon glow:** `text-shadow: 0 0 8px currentColor` on accent text.
-- **Button glow:** `box-shadow: 0 0 16px rgba(97, 48, 242, 0.4)` on hover.
-- **Border glow:** `border: 1px solid rgba(97, 48, 242, 0.5)` with `box-shadow: inset 0 0 12px rgba(97, 48, 242, 0.1)`.
-- Keep glows diffused (12-20px blur). Never harsh or tight.
+## Glassmorphism & Container Effects
+- **Container Background:** `linear-gradient(...)` translucent overlay combined with `url('../assets/img/container-bg-pattern.jpg') center / cover no-repeat`.
+- **Frosted Blur:** `backdrop-filter: blur(20px) saturate(160%)`.
+- **Specular Borders:** `border: 1px solid rgba(255, 255, 255, 0.3)` with `box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42)`.
 
 ## Typography
-- **Headlines:** Neulis — geometric and futuristic with soft terminations. Use bold weight.
-- **Body:** Lexend — optimized for readability against dark backgrounds.
-- **Labels:** Neulis — geometric and futuristic with soft terminations for technical UI elements.
-
-## Elevation
-- No traditional shadows. Use inner/outer glows with neon tint.
-- Surface hierarchy via opacity: darkest base → lighter containers.
-- Subtle scan-line or grid textures as background detail (CSS gradients).
-
-## Components
-- **Buttons:** Dark background, neon border, text glow on hover. No solid neon fill.
-- **Cards:** `surface_container` with thin frosted glass and neon border at 30% opacity.
-- **Inputs:** Dark fill, bottom neon border, glow on focus.
-
-## Rules
-- Maximum 2 neon accent colors per view. Use neutral text primarily.
-- Neon on dark only — never on light backgrounds.
-- Glows animate on interaction, not at rest.
+- **Headlines (`H1`, `H2`, `H3`, `H4` & Titles):** `Neulis` ExtraBold (`font-weight: 800`).
+- **Body Text:** `Poppins` Regular (`font-weight: 400`).
+- **Labels:** `Neulis` ExtraBold (`font-weight: 800`).

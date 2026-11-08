@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -22,13 +22,13 @@
     content="Dirección de arte, identidad visual y producción de contenido para marcas y proyectos del Bajío." />
   <meta property="og:image" content="https://luisperez.pro/assets/img/hero-surreal.png" />
 
-    <!-- Twitter Card -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Luis Pérez | Dirección de arte e identidad visual" />
   <meta name="twitter:description"
     content="Dirección de arte, identidad visual y producción de contenido en Celaya y el Bajío." />
   <meta name="twitter:image" content="https://luisperez.pro/assets/img/hero-surreal.png" />
-  <meta name="theme-color" content="#0a0a12" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="apple-touch-icon" href="assets/img/logos/ojolp.png" />
 
   <!-- Favicon -->
@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Quicksand:wght@500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=Syne:wght@700;800&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap"
     rel="stylesheet" />
 
   <!-- Estilos del Sitio -->
@@ -56,14 +56,13 @@
   <header class="site-header">
     <div class="nav-container">
       <a href="#" class="brand-logo" aria-label="Inicio - Luis Pérez">
-        <img src="assets/img/logos/logo-lp.png" alt="Logotipo Luis Pérez Inox One" class="brand-logo-img"
-          onerror="this.style.display='none'" />
+        <img src="assets/img/logos/logo-lp.png" alt="Logotipo Luis Pérez Inox One" class="brand-logo-img" />
       </a>
 
-      <nav class="nav-menu">
-        <a href="#servicios" class="nav-link">SERVICIOS</a>
+      <nav class="nav-menu" aria-label="Navegación principal">
+        <a href="#servicios" class="nav-link" aria-label="Sobre mí y servicios">SERVICIOS</a>
         <a href="#trabajos" class="nav-link">TRABAJOS</a>
-        <a href="#precios" class="nav-link">SERVICIOS</a>
+        <a href="#precios" class="nav-link" aria-label="Servicios por módulo">SERVICIOS</a>
         <a href="#faq" class="nav-link">FAQ</a>
       </nav>
 
@@ -75,19 +74,19 @@
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </a>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú" aria-expanded="false">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
           <span class="hamburger-bar"></span>
         </button>
       </div>
     </div>
-      <!-- Menú Móvil Desplegable -->
+    <!-- Menú Móvil Desplegable -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
-      <nav class="mobile-nav-links">
-        <a href="#servicios" class="mobile-nav-link">SERVICIOS</a>
+      <nav class="mobile-nav-links" aria-label="Navegación móvil">
+        <a href="#servicios" class="mobile-nav-link" aria-label="Sobre mí y servicios">SERVICIOS</a>
         <a href="#trabajos" class="mobile-nav-link">TRABAJOS</a>
-        <a href="#precios" class="mobile-nav-link">SERVICIOS</a>
+        <a href="#precios" class="mobile-nav-link" aria-label="Servicios por módulo">SERVICIOS</a>
         <a href="#faq" class="mobile-nav-link">FAQ</a>
       </nav>
     </div>
@@ -223,7 +222,8 @@
             <div class="service-card-icon">▲</div>
             <h3>Marca</h3>
             <p class="service-card-tags">Identidad • Sistema • Guía de uso</p>
-            <p>Defino el concepto y desarrollo una identidad visual con sus elementos, variantes y criterios de aplicación.</p>
+            <p>Defino el concepto y desarrollo una identidad visual con sus elementos, variantes y criterios de
+              aplicación.</p>
           </div>
           <a href="https://wa.me/524131216922?text=Hola%20Luis,%20me%20interesa%20el%20servicio%20de%20Identidad%20Visual"
             target="_blank" rel="noopener noreferrer" class="service-card-link">
@@ -236,7 +236,7 @@
           <span class="service-card-number">02</span>
           <div>
             <div class="service-card-icon">✦</div>
-            <h3>Mesa</h3>
+            <h3>Restaurantes y bares</h3>
             <p class="service-card-tags">Menús • Papelería • Empaques</p>
             <p>Llevo la identidad a los puntos de contacto físicos del negocio, desde el menú hasta la señalética.</p>
           </div>
@@ -253,7 +253,8 @@
             <div class="service-card-icon">✎</div>
             <h3>Contenido</h3>
             <p class="service-card-tags">Posts • Carruseles • Plantillas</p>
-            <p>Desarrollo un sistema gráfico para redes que mantiene la comunicación reconocible y coherente en el tiempo.</p>
+            <p>Desarrollo un sistema gráfico para redes que mantiene la comunicación reconocible y coherente en el
+              tiempo.</p>
           </div>
           <a href="https://wa.me/524131216922?text=Hola%20Luis,%20quiero%20consultar%20el%20m%C3%B3dulo%20Contenido"
             target="_blank" rel="noopener noreferrer" class="service-card-link">
@@ -279,8 +280,7 @@
     </section>
 
     <!-- PROYECTOS DESTACADOS (CASOS DE ESTUDIO REALES) -->
-    <section id="trabajos" class="section-wrapper"
-      style="background: rgba(14, 16, 20, 0.6); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section id="trabajos" class="section-wrapper dark-glass-section">
       <div class="projects-section-header">
         <div>
           <div class="section-label secondary">
@@ -290,11 +290,11 @@
           <h2 class="section-heading">Proyectos Destacados</h2>
         </div>
 
-        <div class="projects-filter-bar">
-          <button class="filter-button active" data-filter="all">TODOS</button>
-          <button class="filter-button" data-filter="festivales">FESTIVALES</button>
-          <button class="filter-button" data-filter="gastronomia">GASTRONOMÍA</button>
-          <button class="filter-button" data-filter="editorial">EDITORIAL &amp; 3D</button>
+        <div class="projects-filter-bar" role="group" aria-label="Filtrar proyectos por categoría">
+          <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">TODOS</button>
+          <button class="filter-button" type="button" data-filter="festivales" aria-pressed="false">FESTIVALES</button>
+          <button class="filter-button" type="button" data-filter="gastronomia" aria-pressed="false">GASTRONOMÍA</button>
+          <button class="filter-button" type="button" data-filter="editorial" aria-pressed="false">EDITORIAL &amp; 3D</button>
         </div>
       </div>
 
@@ -317,7 +317,8 @@
               Dirección visual para la 12.ª edición: concepto e ilustración principal, adaptados a publicidad exterior,
               puntos para fotografía y redes. La edición reportó <strong>más de 124,000 personas alcanzadas</strong>,
               <strong>4,376 interacciones digitales</strong>, 32 marcas cerveceras y 45 expositores. La derrama local
-              reportada fue de <strong>$4.5 millones MXN</strong>; corresponde al evento, no a una atribución directa al diseño.
+              reportada fue de <strong>$4.5 millones MXN</strong>; corresponde al evento, no a una atribución directa al
+              diseño.
             </p>
             <div class="project-tags-list">
               <span class="project-tag highlight">Key Visual 360°</span>
@@ -370,7 +371,8 @@
             </div>
             <p class="project-description">
               Diseño editorial de 34 páginas e infografías, junto con un personaje institucional 3D. El informe reunió
-              información de programas dirigidos a <strong>más de 13,000 personas beneficiarias en 42 comunidades</strong>.
+              información de programas dirigidos a <strong>más de 13,000 personas beneficiarias en 42
+                comunidades</strong>.
             </p>
             <div class="project-tags-list">
               <span class="project-tag highlight">Personaje 3D Oficial</span>
@@ -401,7 +403,8 @@
           <div class="pricing-plan-card">
             <span class="plan-category-tag">IDENTIDAD</span>
             <h3 class="plan-name">Marca</h3>
-            <p class="plan-summary">Una base visual clara para que tu marca se reconozca y pueda crecer con coherencia.</p>
+            <p class="plan-summary">Una base visual clara para que tu marca se reconozca y pueda crecer con coherencia.
+            </p>
             <ul class="plan-checklist">
               <li><span class="checklist-icon lime">✓</span> Concepto e identidad visual</li>
               <li><span class="checklist-icon lime">✓</span> Sistema gráfico y variantes</li>
@@ -461,8 +464,7 @@
     </section>
 
     <!-- RESULTADOS Y CONTEXTO DE LOS PROYECTOS -->
-    <section class="section-wrapper"
-      style="background: rgba(14, 16, 20, 0.6); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section class="section-wrapper dark-glass-section">
       <div class="testimonials-top-bar">
         <div class="section-label secondary">
           <span class="section-label-bar"></span>
@@ -475,7 +477,9 @@
       <div class="testimonials-grid">
         <!-- Caso Festival -->
         <div class="testi-card">
-          <p class="testi-quote">La edición reportó más de 124,000 personas alcanzadas y 4,376 interacciones digitales con una inversión publicitaria de $1,746 MXN. El festival informó una derrama económica local de $4.5 millones MXN.</p>
+          <p class="testi-quote">La edición reportó más de 124,000 personas alcanzadas y 4,376 interacciones digitales
+            con una inversión publicitaria de $1,746 MXN. El festival informó una derrama económica local de $4.5
+            millones MXN.</p>
           <div class="testi-user-box">
             <div class="testi-avatar avatar-indigo">FC</div>
             <div>
@@ -487,7 +491,8 @@
 
         <!-- Caso Santana -->
         <div class="testi-card">
-          <p class="testi-quote">El proyecto desarrolló la identidad de Santana Terraza desde cero: monograma, paleta de color, papelería, menús y comunicación de apertura.</p>
+          <p class="testi-quote">El proyecto desarrolló la identidad de Santana Terraza desde cero: monograma, paleta de
+            color, papelería, menús y comunicación de apertura.</p>
           <div class="testi-user-box">
             <div class="testi-avatar avatar-lime">ST</div>
             <div>
@@ -499,7 +504,8 @@
 
         <!-- Caso DIF -->
         <div class="testi-card">
-          <p class="testi-quote">El primer informe incluyó diseño editorial de 34 páginas e infografías, además de un personaje institucional 3D. Presentó programas dirigidos a más de 13,000 personas en 42 comunidades.</p>
+          <p class="testi-quote">El primer informe incluyó diseño editorial de 34 páginas e infografías, además de un
+            personaje institucional 3D. Presentó programas dirigidos a más de 13,000 personas en 42 comunidades.</p>
           <div class="testi-user-box">
             <div class="testi-avatar avatar-indigo">DIF</div>
             <div>
@@ -526,7 +532,7 @@
         <div class="faq-list">
           <!-- FAQ 1 -->
           <div class="faq-card-item">
-            <button class="faq-toggle-btn" type="button">
+            <button class="faq-toggle-btn" type="button" aria-expanded="false">
               <span>1. ¿Cómo empieza un proyecto?</span>
               <span class="faq-icon-symbol">+</span>
             </button>
@@ -539,12 +545,13 @@
 
           <!-- FAQ 2 -->
           <div class="faq-card-item">
-            <button class="faq-toggle-btn" type="button">
+            <button class="faq-toggle-btn" type="button" aria-expanded="false">
               <span>2. ¿Dónde puedo consultar dudas o agendar llamada?</span>
               <span class="faq-icon-symbol">+</span>
             </button>
             <div class="faq-body-content">
               <p>Puedes escribirle directamente a Luis por WhatsApp al <a href="https://wa.me/524131216922"
+                  target="_blank" rel="noopener noreferrer"
                   style="color: var(--color-secondary); font-weight: 700;">+52 413 121 6922</a> o al correo electrónico
                 <a href="mailto:contacto@inoxone.com.mx"
                   style="color: var(--color-secondary); font-weight: 700;">contacto@inoxone.com.mx</a>. Escríbeme para
@@ -555,7 +562,7 @@
 
           <!-- FAQ 3 -->
           <div class="faq-card-item">
-            <button class="faq-toggle-btn" type="button">
+            <button class="faq-toggle-btn" type="button" aria-expanded="false">
               <span>3. ¿Cómo se define el alcance y emites comprobantes fiscales?</span>
               <span class="faq-icon-symbol">+</span>
             </button>
@@ -567,7 +574,7 @@
 
           <!-- FAQ 4 -->
           <div class="faq-card-item">
-            <button class="faq-toggle-btn" type="button">
+            <button class="faq-toggle-btn" type="button" aria-expanded="false">
               <span>4. ¿En cuánto tiempo está listo el proyecto?</span>
               <span class="faq-icon-symbol">+</span>
             </button>
@@ -579,7 +586,7 @@
 
           <!-- FAQ 5 -->
           <div class="faq-card-item">
-            <button class="faq-toggle-btn" type="button">
+            <button class="faq-toggle-btn" type="button" aria-expanded="false">
               <span>5. ¿Qué distingue el proceso de trabajo?</span>
               <span class="faq-icon-symbol">+</span>
             </button>
@@ -620,8 +627,7 @@
     <div class="footer-content-grid">
       <div>
         <div class="footer-brand-title">
-          <img src="assets/img/logos/ojolp.png" alt="Ojo LP" style="width: 28px; height: 28px; object-fit: contain;"
-            onerror="this.style.display='none'" />
+          <img src="assets/img/logos/ojolp.png" alt="Ojo LP" style="width: 28px; height: 28px; object-fit: contain;" />
           <span>Luis Pérez · Dirección de arte</span>
         </div>
         <p class="footer-mission">

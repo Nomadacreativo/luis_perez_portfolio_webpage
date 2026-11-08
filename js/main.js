@@ -4,6 +4,13 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. FALLBACK SEGURO DE IMÁGENES (SIN INLINE ONERROR PARA CUMPLIR CSP)
+  document.querySelectorAll('.brand-logo-img, .footer-brand-title img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+    });
+  });
+
   // 1. FILTRADO DE PROYECTOS DESTACADOS
   const filterButtons = document.querySelectorAll('.filter-button');
   const projectCards = document.querySelectorAll('.project-card');
@@ -11,8 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (filterButtons.length && projectCards.length) {
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
+        filterButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
 
         const filter = btn.getAttribute('data-filter');
 
@@ -20,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const category = card.getAttribute('data-category');
           if (filter === 'all' || category === filter) {
             card.style.display = 'flex';
+            card.style.animation = 'none';
+            void card.offsetWidth;
             card.style.animation = 'fadeInCard 0.4s ease forwards';
           } else {
             card.style.display = 'none';
@@ -35,12 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
   faqToggles.forEach(btn => {
     btn.addEventListener('click', () => {
       const card = btn.closest('.faq-card-item');
+      if (!card) return;
       const body = card.querySelector('.faq-body-content');
       const isExpanded = card.classList.contains('active');
 
       // Cerrar otros acordeones
       document.querySelectorAll('.faq-card-item').forEach(c => {
         c.classList.remove('active');
+        const toggle = c.querySelector('.faq-toggle-btn');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
         const b = c.querySelector('.faq-body-content');
         if (b) b.style.maxHeight = null;
       });
@@ -48,9 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
       // Abrir el seleccionado si no estaba abierto
       if (!isExpanded && body) {
         card.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
         body.style.maxHeight = body.scrollHeight + 'px';
       }
     });
+  });
+
+  window.addEventListener('resize', () => {
+    const activeFaqBody = document.querySelector('.faq-card-item.active .faq-body-content');
+    if (activeFaqBody) {
+      activeFaqBody.style.maxHeight = activeFaqBody.scrollHeight + 'px';
+    }
   });
 
   // 4. NAVEGACIÓN MÓVIL (HAMBURGER & DRAWER)
